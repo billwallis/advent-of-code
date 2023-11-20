@@ -20,8 +20,9 @@ class Position(tuple):
 
     - https://docs.python.org/3/library/collections.abc.html
     """
+
     def __new__(cls, *args):
-        return super(Position, cls).__new__(cls, args)
+        return super().__new__(cls, args)
 
     def __str__(self):
         return super().__str__()
@@ -29,7 +30,7 @@ class Position(tuple):
     def __repr__(self):
         return super().__repr__()
 
-    def __add__(self, other: Position | tuple[int, ]):
+    def __add__(self, other: Position | tuple[int,]):
         other = Position.from_tuple(other) if isinstance(other, tuple) else other
         length = max(len(self), len(other))
 
@@ -37,10 +38,10 @@ class Position(tuple):
             *(self.get(index_) + other.get(index_) for index_ in range(length))
         )
 
-    def __radd__(self, other: Position | tuple[int, ]):
+    def __radd__(self, other: Position | tuple[int,]):
         return self.__add__(other)
 
-    def __iadd__(self, other: Position | tuple[int, ]):
+    def __iadd__(self, other: Position | tuple[int,]):
         return self.__add__(other)
 
     def __sub__(self, other):
@@ -51,19 +52,19 @@ class Position(tuple):
             *(self.get(index_) - other.get(index_) for index_ in range(length))
         )
 
-    def __rsub__(self, other: Position | tuple[int, ]):
+    def __rsub__(self, other: Position | tuple[int,]):
         return self.__sub__(other)
 
-    def __isub__(self, other: Position | tuple[int, ]):
+    def __isub__(self, other: Position | tuple[int,]):
         return self.__sub__(other)
 
     def __mul__(self, other: int):
         if not isinstance(other, int):
-            raise ValueError(f"Can't multiply a Position by an object of type {type(other)}")
+            raise ValueError(
+                f"Can't multiply a Position by an object of type {type(other)}"
+            )
 
-        return Position(
-            *(self[index_] * other for index_ in range(len(self)))
-        )
+        return Position(*(self[index_] * other for index_ in range(len(self))))
 
     def __rmul__(self, other: int):
         return self.__mul__(other)
@@ -73,11 +74,11 @@ class Position(tuple):
 
     def __truediv__(self, other: int):
         if not isinstance(other, int):
-            raise ValueError(f"Can't divide a Position by an object of type {type(other)}")
+            raise ValueError(
+                f"Can't divide a Position by an object of type {type(other)}"
+            )
 
-        return Position(
-            *(_intify(self[index_] / other) for index_ in range(len(self)))
-        )
+        return Position(*(_intify(self[index_] / other) for index_ in range(len(self))))
 
     def __rtruediv__(self, other: int):
         return self.__truediv__(other)
@@ -123,6 +124,7 @@ class Area:
     """
     An area, which is a set of positions.
     """
+
     def __init__(self, position_1: Position, position_2: Position):
         self.position_1 = position_1
         self.position_2 = position_2

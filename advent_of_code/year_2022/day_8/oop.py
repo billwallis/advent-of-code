@@ -14,6 +14,7 @@ class Tree:
     """
     A tree, which has a height and whether it's visible.
     """
+
     def __init__(self, height: str | int):
         self.height = int(height)
         self.visible: bool | None = None
@@ -44,6 +45,7 @@ class Forest:
     """
     A forest, which is a collection of trees at specific positions.
     """
+
     def __init__(self, trees: str):
         self._trees = trees
         self.forest: list[list[Tree]] = self._get_forest()
@@ -101,10 +103,7 @@ class Forest:
         whether the tree is visible.
         """
         return "\n".join(
-            "  ".join([
-                f"({tree.height}, {tree.visible!s:>5})"
-                for tree in row
-            ])
+            "  ".join([f"({tree.height}, {tree.visible!s:>5})" for tree in row])
             for row in self.forest
         )
 
@@ -112,10 +111,7 @@ class Forest:
         """
         Convert the string representation of the trees into a forest.
         """
-        return [
-            [Tree(tree) for tree in trees]
-            for trees in self._trees.split("\n")
-        ]
+        return [[Tree(tree) for tree in trees] for trees in self._trees.split("\n")]
 
     def set_visibility(self) -> None:
         """
@@ -145,9 +141,9 @@ class Forest:
         """
         Return whether the position is on the edge of the forest.
         """
-        return (
-               position[0] in (0, self.shape[0] - 1)
-            or position[1] in (0, self.shape[1] - 1)
+        return position[0] in (0, self.shape[0] - 1) or position[1] in (
+            0,
+            self.shape[1] - 1,
         )
 
     def is_visible(self, pos: Position) -> bool:
@@ -164,8 +160,7 @@ class Forest:
         # A tree is visible if it can be seen from at least one direction
         tree = self[pos]
         return any(
-            tree.height > max(others)
-            for others in self.get_surrounding_trees(pos)
+            tree.height > max(others) for others in self.get_surrounding_trees(pos)
         )
 
     def compute_scenic_score(self, position: Position) -> int:
@@ -181,10 +176,10 @@ class Forest:
         # The surrounding trees are left-to-right and top-to-bottom, so we need
         # to reverse the `left` list and the `up` list
         return (
-                utils.directional_score(surrounding_trees[0][::-1], height)  # left
-                * utils.directional_score(surrounding_trees[1], height)  # right
-                * utils.directional_score(surrounding_trees[2][::-1], height)  # up
-                * utils.directional_score(surrounding_trees[3], height)  # down
+            utils.directional_score(surrounding_trees[0][::-1], height)  # left
+            * utils.directional_score(surrounding_trees[1], height)  # right
+            * utils.directional_score(surrounding_trees[2][::-1], height)  # up
+            * utils.directional_score(surrounding_trees[3], height)  # down
         )
 
     def count_visible_trees(self) -> int:
@@ -198,8 +193,7 @@ class Forest:
         Return the number of trees that are visible is this forest.
         """
         return max(
-            self.compute_scenic_score(Position(row, col))
-            for row, col in self.range
+            self.compute_scenic_score(Position(row, col)) for row, col in self.range
         )
 
 

@@ -22,6 +22,7 @@ class Point:
     A point on a map, which has a position and the material that is it filled
     with.
     """
+
     def __init__(self, position: Position, filled_with: Material):
         self.position = position
         self.filled_with = filled_with
@@ -35,33 +36,49 @@ class Point:
 
 class Cave:
     def __init__(self):
-        self.points: dict[Position, Point] = {}  # Point per coordinate within the dimensions
+        self.points: dict[
+            Position, Point
+        ] = {}  # Point per coordinate within the dimensions
         self.floor_level = 0
         self._add_starting_sand()
 
     @property
     def total_area(self) -> Area:
-        p_min = Position(min(pos[0] for pos in self.points.keys()), min(pos[1] for pos in self.points.keys()))
-        p_max = Position(max(pos[0] for pos in self.points.keys()), max(pos[1] for pos in self.points.keys()))
+        p_min = Position(
+            min(pos[0] for pos in self.points.keys()),
+            min(pos[1] for pos in self.points.keys()),
+        )
+        p_max = Position(
+            max(pos[0] for pos in self.points.keys()),
+            max(pos[1] for pos in self.points.keys()),
+        )
 
         return Area(p_min, p_max)
 
     def _add_starting_sand(self) -> None:
         position = START
-        self.points[position] = Point(position=position, filled_with=Material.STARTING_SAND)
+        self.points[position] = Point(
+            position=position, filled_with=Material.STARTING_SAND
+        )
 
     def add_rocks(self, rock_text: str) -> None:
         rock_coordinates = rock_text.split(" -> ")
         for pair in itertools.pairwise(rock_coordinates):
-            for position in Area(Position.from_text(pair[0]), Position.from_text(pair[1])):
-                self.points[position] = Point(position=position, filled_with=Material.ROCK)
+            for position in Area(
+                Position.from_text(pair[0]), Position.from_text(pair[1])
+            ):
+                self.points[position] = Point(
+                    position=position, filled_with=Material.ROCK
+                )
 
         self.floor_level = max(pos[1] for pos in self.points.keys()) + 2
 
     def add_air(self) -> None:
         for position in self.total_area:
             if not self.points.get(position):
-                self.points[position] = Point(position=position, filled_with=Material.AIR)
+                self.points[position] = Point(
+                    position=position, filled_with=Material.AIR
+                )
 
     def add_sand(self, position: Position) -> None:
         self.points[position] = Point(position=position, filled_with=Material.SAND)
@@ -132,11 +149,13 @@ class SandCycle:
             # self.cave.draw()
             # time.sleep(0.5)
 
-        return len([
-            point
-            for point in self.cave.points.values()
-            if point.filled_with == Material.SAND
-        ])
+        return len(
+            [
+                point
+                for point in self.cave.points.values()
+                if point.filled_with == Material.SAND
+            ]
+        )
 
     def move_sand_until_hit_starting_point(self) -> None:
         position = self.path[-1]
@@ -166,11 +185,13 @@ class SandCycle:
             # self.cave.draw()
             # time.sleep(0.5)
 
-        return len([
-            point
-            for point in self.cave.points.values()
-            if point.filled_with == Material.SAND
-        ])
+        return len(
+            [
+                point
+                for point in self.cave.points.values()
+                if point.filled_with == Material.SAND
+            ]
+        )
 
 
 # noinspection DuplicatedCode

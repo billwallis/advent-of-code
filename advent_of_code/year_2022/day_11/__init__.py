@@ -6,7 +6,6 @@ https://adventofcode.com/2022/day/11/input
 from advent_of_code.year_2022.day_11.oop import solution as solution_oop
 from advent_of_code.year_2022.day_11.optimal import solution as solution_optimal
 
-
 SAMPLE_INPUT = """
 Monkey 0:
   Starting items: 79, 98

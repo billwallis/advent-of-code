@@ -1,6 +1,7 @@
 --- Day 23: Unstable Diffusion ---
 
 ### Part One
+
 You enter a large crater of gray dirt where the grove is supposed to be. All around you, plants you imagine were expected to be full of fruit are instead withered and broken. A large group of Elves has formed in the middle of the grove.
 
 "...but this volcano has been dormant for months. Without ash, the fruit can't grow!"
@@ -217,6 +218,4 @@ In this region, the number of empty ground tiles is **110**.
 
 Simulate the Elves' process and find the smallest rectangle that contains the Elves after 10 rounds. **How many empty ground tiles does that rectangle contain?**
 
-
 ### Part Two
-

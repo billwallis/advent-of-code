@@ -1,6 +1,7 @@
 --- Day 25: Full of Hot Air ---
 
 ### Part One
+
 As the expedition finally reaches the extraction point, several large hot air balloons drift down to meet you. Crews quickly start unloading the equipment the balloons brought: many hot air balloon kits, some fuel tanks, and a **fuel heating machine**.
 
 The fuel heating machine is a new addition to the process. When this mountain was a volcano, the ambient temperature was more reasonable; now, it's so cold that the fuel won't work at all without being warmed up first.
@@ -103,6 +104,4 @@ Reversing the process, you can determine that for the decimal number **4890**, t
 
 The Elves are starting to get cold. What SNAFU number do you supply to Bob's console?
 
-
 ### Part Two
-

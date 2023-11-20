@@ -11,6 +11,7 @@ class Item:
     """
     An item, which just has a worry level.
     """
+
     def __init__(self, worry_level: int):
         self._worry_level = worry_level
         self.worry_history = [worry_level]
@@ -35,6 +36,7 @@ class Monkey:
     """
     A Monkey, which hold items, inspects items, and throws items.
     """
+
     def __init__(
         self,
         monkey_id: int,
@@ -62,13 +64,15 @@ class Monkey:
         self.divisor = int(self._test.split()[2])
 
     def __repr__(self):
-        return f"Monkey(" \
-               f"monkey_id={self.id}, " \
-               f"items={self.items}, " \
-               f"operation='{self._operation}', " \
-               f"test='{self._test}', " \
-               f"test_outcome={self._outcome}" \
-               f")"
+        return (
+            f"Monkey("
+            f"monkey_id={self.id}, "
+            f"items={self.items}, "
+            f"operation='{self._operation}', "
+            f"test='{self._test}', "
+            f"test_outcome={self._outcome}"
+            f")"
+        )
 
     @classmethod
     def from_string_block(cls, text: str) -> Monkey:
@@ -129,7 +133,9 @@ class Monkey:
         """
         return self._outcome[self.test(item.worry_level)]
 
-    def inspect_item(self, item: Item, worry_divisor: int, total_divisor: int = None) -> None:
+    def inspect_item(
+        self, item: Item, worry_divisor: int, total_divisor: int = None
+    ) -> None:
         """
         Inspect an item that the monkey is holding.
         """
@@ -139,13 +145,16 @@ class Monkey:
         # Taking the remainder from total_divisor doesn't impact the divisibility
         # of the values, but stops them from growing so large that the program
         # slows to a halt
-        item.worry_level = (self.evaluate_worry(item.worry_level) // worry_divisor) % total_divisor
+        item.worry_level = (
+            self.evaluate_worry(item.worry_level) // worry_divisor
+        ) % total_divisor
 
 
 class Rounds:
     """
     Round handler for monkeys inspecting items and throwing them to each other.
     """
+
     def __init__(self, monkeys: dict[int, Monkey], worry_divisor: int):
         self.monkeys = monkeys
         self.worry_divisor = worry_divisor
@@ -196,7 +205,9 @@ class Rounds:
         Determine the current level of monkey business, which is the product of
         the top 2 counts of inspections.
         """
-        inspection_counts = sorted([monkey.inspection_count for monkey in self.monkeys.values()])
+        inspection_counts = sorted(
+            [monkey.inspection_count for monkey in self.monkeys.values()]
+        )
         return math.prod(inspection_counts[-2:])
 
 
@@ -206,10 +217,7 @@ def make_monkeys(input_: str) -> dict[int, Monkey]:
     """
     return {
         monkey.id: monkey
-        for monkey in [
-            Monkey.from_string_block(line)
-            for line in input_.split("\n\n")
-        ]
+        for monkey in [Monkey.from_string_block(line) for line in input_.split("\n\n")]
     }
 
 

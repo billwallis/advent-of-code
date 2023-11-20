@@ -13,6 +13,7 @@ class Assignment:
     This is a range between section IDs, such as ``2-4`` (which means that the
     section assignment is 2, 3, and 4).
     """
+
     def __init__(self, lower_id: int | str, upper_id: int | str):
         self.lower_id = min(int(lower_id), int(upper_id))
         self.upper_id = max(int(lower_id), int(upper_id))
@@ -43,8 +44,7 @@ class Assignment:
         match other:
             case Assignment():
                 return (
-                        self.lower_id >= other.lower_id
-                    and self.upper_id <= other.upper_id
+                    self.lower_id >= other.lower_id and self.upper_id <= other.upper_id
                 )
             case int():
                 return self.lower_id <= other <= self.upper_id
@@ -67,7 +67,7 @@ class Assignment:
             False
         """
         return (
-               self.lower_id <= other.lower_id <= self.upper_id
+            self.lower_id <= other.lower_id <= self.upper_id
             or self.lower_id <= other.upper_id <= self.upper_id
             or other.lower_id <= self.lower_id <= other.upper_id
             or other.lower_id <= self.upper_id <= other.upper_id
@@ -91,6 +91,7 @@ class AssignmentPair:
     """
     A section assignment pair.
     """
+
     def __init__(self, assignment_1: Assignment, assignment_2: Assignment):
         self.assignment_1 = assignment_1
         self.assignment_2 = assignment_2
@@ -107,7 +108,7 @@ class AssignmentPair:
         other.
         """
         return (
-               self.assignment_1 in self.assignment_2
+            self.assignment_1 in self.assignment_2
             or self.assignment_2 in self.assignment_1
         )
 
@@ -141,6 +142,7 @@ class AssignmentPairs:
     """
     A collection of ``AssignmentPair`` objects.
     """
+
     def __init__(self, assignment_pairs: str):
         self._assignment_pairs = assignment_pairs
         self.assignment_pairs = [
@@ -166,10 +168,7 @@ class AssignmentPairs:
         Return the number of assignment pairs that overlap in at least 1
         section.
         """
-        return sum(
-            int(assignment_pair.do_ranges_overlap())
-            for assignment_pair in self
-        )
+        return sum(int(assignment_pair.do_ranges_overlap()) for assignment_pair in self)
 
 
 def solution(input_: str) -> list[Any]:

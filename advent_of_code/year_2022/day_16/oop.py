@@ -112,7 +112,9 @@ class Route:
             self.open_valves.append(self.current_valve)
 
     def run(self, next_valve: Valve | None) -> None:
-        assert self.current_valve in self.open_valves if self.current_valve.open else True
+        assert (
+            self.current_valve in self.open_valves if self.current_valve.open else True
+        )
         self._resolve_open_valves()
         self._resolve_action(next_valve)
 
@@ -126,7 +128,9 @@ class Cycles:
 
     def run(self):
         while self.current_time < self.total_time:
-            print(f"== Running minute {1 + self.current_time} with {len(self.routes)} routes ==")
+            print(
+                f"== Running minute {1 + self.current_time} with {len(self.routes)} routes =="
+            )
 
             extra_routes = []
             remove_routes = []
@@ -145,7 +149,9 @@ class Cycles:
 
             [self.routes.remove(rt) for rt in remove_routes]
             self.routes += extra_routes
-            self.routes = sorted(self.routes)[-5000:]  # Limit (arbitrarily) otherwise takes way too long
+            self.routes = sorted(self.routes)[
+                -5000:
+            ]  # Limit (arbitrarily) otherwise takes way too long
             self.current_time += 1
 
 

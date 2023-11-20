@@ -12,6 +12,7 @@ class Knot:
     """
     A knot, which only has a position and its history.
     """
+
     def __init__(self, position: Position):
         self._position = position
         self.position_history = [position]
@@ -42,14 +43,14 @@ class Rope:
     """
     A rope, whose head has a position and whose tail has a position.
     """
+
     def __init__(self, starting_position: Position, knots: int):
         """
         Create a rope with a starting position and some number of knots.
         """
         self.knots = knots
         self.knot_positions: dict[int, Knot] = {
-            i: Knot(starting_position)
-            for i in range(knots)
+            i: Knot(starting_position) for i in range(knots)
         }
 
     def __str__(self):
@@ -104,7 +105,7 @@ def resolve_knot_position(upper_knot: Position, lower_knot: Position) -> Positio
     Update the lower knot's position to correctly follow the upper knot
     around.
     """
-    x, y = (upper_knot - lower_knot)
+    x, y = upper_knot - lower_knot
     x_, y_ = abs(x), abs(y)
     if x_ == 2 and y_ == 2:
         return lower_knot + Position(x // x_, y // y_)

@@ -17,6 +17,7 @@ class Hand(enum.Enum):
     means that ``hand_1`` beats ``hand_2``, but ``hand_1 > hand_2 > hand_3``
     does not imply that ``hand_1 > hand_3``.
     """
+
     ROCK = "rock"
     PAPER = "paper"
     SCISSORS = "scissors"
@@ -31,7 +32,7 @@ class Hand(enum.Enum):
         return self > other or self == other
 
     def __lt__(self, other: Hand):
-        return not(self >= other)
+        return not (self >= other)
 
     def __le__(self, other: Hand):
         return self < other or self == other
@@ -98,6 +99,7 @@ class Round:
     Consists of 2 hands corresponding to the "player" and the "opponent". The
     round has a result and a score for the player.
     """
+
     def __init__(self, opponent_hand: Hand, player_hand: Hand, result: str):
         self.opponent_hand = opponent_hand
         self.player_hand = player_hand
@@ -111,10 +113,12 @@ class Round:
         """
         The player's score from this round.
         """
-        return sum([
-            constants.SCORES[self.player_hand.value],
-            constants.SCORES[self.result],
-        ])
+        return sum(
+            [
+                constants.SCORES[self.player_hand.value],
+                constants.SCORES[self.result],
+            ]
+        )
 
     @classmethod
     def from_part_1(cls, round_input: str) -> Round:
@@ -169,12 +173,19 @@ class Strategy:
     """
     The strategy guide.
     """
+
     def __init__(self, strategy_input: str, part: int):
         """"""
         if part == 1:
-            self.rounds = [Round.from_part_1(round_strategy) for round_strategy in strategy_input.split("\n")]
+            self.rounds = [
+                Round.from_part_1(round_strategy)
+                for round_strategy in strategy_input.split("\n")
+            ]
         elif part == 2:
-            self.rounds = [Round.from_part_2(round_strategy) for round_strategy in strategy_input.split("\n")]
+            self.rounds = [
+                Round.from_part_2(round_strategy)
+                for round_strategy in strategy_input.split("\n")
+            ]
         else:
             raise ValueError(f"Bad `part` value. Must be 1 or 2, found {part}.")
 

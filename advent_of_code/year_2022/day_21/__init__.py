@@ -6,7 +6,6 @@ https://adventofcode.com/2022/day/21/input
 from advent_of_code.year_2022.day_21.oop import solution as solution_oop
 from advent_of_code.year_2022.day_21.optimal import solution as solution_optimal
 
-
 SAMPLE_INPUT = """
 root: pppw + sjmn
 dbpl: 5

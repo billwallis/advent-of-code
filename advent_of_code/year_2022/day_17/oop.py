@@ -5,7 +5,7 @@ from __future__ import annotations
 
 import abc
 import copy
-from typing import Any, Type
+from typing import Any
 
 from utils.geometry import Position
 
@@ -16,6 +16,7 @@ class COLOURS:
 
     - https://stackoverflow.com/a/287944/8213085
     """
+
     HEADER = "\033[95m"
     OKBLUE = "\033[94m"
     OKCYAN = "\033[96m"
@@ -83,7 +84,7 @@ class Horizontal(Rock):
     ]
 
     def __init__(self, top_left: Position):
-        super(Horizontal, self).__init__(top_left=top_left)
+        super().__init__(top_left=top_left)
 
 
 class Plus(Rock):
@@ -98,7 +99,7 @@ class Plus(Rock):
     ]
 
     def __init__(self, top_left: Position):
-        super(Plus, self).__init__(top_left=top_left)
+        super().__init__(top_left=top_left)
 
 
 class Bend(Rock):
@@ -113,7 +114,7 @@ class Bend(Rock):
     ]
 
     def __init__(self, top_left: Position):
-        super(Bend, self).__init__(top_left=top_left)
+        super().__init__(top_left=top_left)
 
 
 class Vertical(Rock):
@@ -127,7 +128,7 @@ class Vertical(Rock):
     ]
 
     def __init__(self, top_left: Position):
-        super(Vertical, self).__init__(top_left=top_left)
+        super().__init__(top_left=top_left)
 
 
 class Square(Rock):
@@ -141,7 +142,7 @@ class Square(Rock):
     ]
 
     def __init__(self, top_left: Position):
-        super(Square, self).__init__(top_left=top_left)
+        super().__init__(top_left=top_left)
 
 
 def intersection(shape_1: Rock, shape_2: Rock) -> bool:
@@ -194,10 +195,12 @@ class Chamber:
         new_rock_cls = ROCK_ORDER[self.rock_cycle]
         self.rock_cycle = (self.rock_cycle + 1) % 5
 
-        new_rock = new_rock_cls(top_left=Position(
-            from_left + 1,
-            from_bottom + self.top_height + new_rock_cls.height,
-        ))
+        new_rock = new_rock_cls(
+            top_left=Position(
+                from_left + 1,
+                from_bottom + self.top_height + new_rock_cls.height,
+            )
+        )
         self.rocks.append(new_rock)
 
         return new_rock
@@ -209,9 +212,7 @@ class Chamber:
         moved_rock = copy.copy(rock)
         moved_rock.move(direction)
 
-        return any(
-            position in self.contents.keys() for position in moved_rock.shape
-        )
+        return any(position in self.contents.keys() for position in moved_rock.shape)
 
     def jet_movement(self, rock: Rock) -> Position:
         """
@@ -262,7 +263,13 @@ class Chamber:
             image += "\n"
             for x in range(1, 1 + self.width):
                 y_ = self.top_height - y
-                image += "@" if y_ == 0 else "#" if Position(x, y_) in self.contents.keys() else "."
+                image += (
+                    "@"
+                    if y_ == 0
+                    else "#"
+                    if Position(x, y_) in self.contents.keys()
+                    else "."
+                )
 
         print(image)
 
@@ -286,7 +293,7 @@ class Chamber:
         print(image)
 
 
-ROCK_ORDER: dict[int, Type[Rock]] = {
+ROCK_ORDER: dict[int, type[Rock]] = {
     0: Horizontal,
     1: Plus,
     2: Bend,

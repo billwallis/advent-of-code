@@ -36,6 +36,7 @@ class Height:
     """
     A height, determined by a character from ``a`` to ``z``.
     """
+
     _START_END = {
         "S": "`",  # ` comes before a
         "E": "{",  # { comes after z
@@ -88,6 +89,7 @@ class Point:
     A point on a map, which has a position, a height, and whether it has been
     visited.
     """
+
     def __init__(self, position: Position, height: Height):
         self.position = position
         self.height = height
@@ -105,7 +107,10 @@ class Hill:
     A hill, which is a plane of 2-dimensional points with a corresponding height
     value.
     """
-    def __init__(self, map_: dict[Position, Point], starting_point: Point, ending_letter: str):
+
+    def __init__(
+        self, map_: dict[Position, Point], starting_point: Point, ending_letter: str
+    ):
         """
         Create a hill which is a grid of points, with a start point and end
         point of the route to be found.
@@ -153,7 +158,7 @@ class Hill:
             if position[0] == 0:
                 image += "\n"
 
-            new_visit = (point in self.routes[current_step])
+            new_visit = point in self.routes[current_step]
             character = "\033[92m@\033[0m" if new_visit else characters[point.visited]
             image += character
 
@@ -182,10 +187,13 @@ class Hill:
             for point in self.routes[step]:
                 for neighbour_position in point.position.neighbours:
                     if neighbour := self.map_.get(neighbour_position):
-                        if self.can_climb(
-                            current_height=self.map_.get(point.position).height,
-                            neighbour_height=neighbour.height,
-                        ) and not neighbour.visited:
+                        if (
+                            self.can_climb(
+                                current_height=self.map_.get(point.position).height,
+                                neighbour_height=neighbour.height,
+                            )
+                            and not neighbour.visited
+                        ):
                             self.routes[step + 1].append(neighbour)
                             neighbour.visited = True
                             if end_found := (neighbour.height == end):

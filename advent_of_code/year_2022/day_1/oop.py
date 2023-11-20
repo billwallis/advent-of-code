@@ -12,6 +12,7 @@ class Elves:
     """
     Container for Elf objects.
     """
+
     def __init__(self):
         self.number_of_elves = 0
         self.largest_elf: Elf | None = None
@@ -55,13 +56,16 @@ class Elf:
     """
     An elf, defined only by an ID and a list of calories.
     """
+
     def __init__(self, elf_id: int, calorie_list: str):
         self.id = elf_id
         self.calorie_list = calorie_list
 
     def __repr__(self):
-        calorie_list = self.calorie_list.replace('\n', ',')
-        return f"Elf(id={self.id}, calorie_list={calorie_list}, calories={self.calories})"
+        calorie_list = self.calorie_list.replace("\n", ",")
+        return (
+            f"Elf(id={self.id}, calorie_list={calorie_list}, calories={self.calories})"
+        )
 
     def __lt__(self, other: Elf):
         return self.calories < other.calories

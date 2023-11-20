@@ -19,6 +19,7 @@ class Encoder(json.JSONEncoder):
     """
     Encoder to serialise objects to JSON that aren't supported by JSON.
     """
+
     def default(self, obj: Any) -> str:
         """
         Return the repr of the object.
@@ -30,6 +31,7 @@ class File:
     """
     A file, which only has a size.
     """
+
     def __init__(self, size: int):
         self.size = size
 
@@ -47,6 +49,7 @@ class Directory(dict):
     It has a root, a parent, and may have children which are files and other
     directories.
     """
+
     def __init__(self, root: Directory, parent: Directory):
         super().__init__()
         self.root = root
@@ -69,9 +72,7 @@ class Directory(dict):
         Add a child directory to this directory.
         """
         if dir_name in self:
-            raise ValueError(
-                f"There already exists an object called {dir_name}"
-            )
+            raise ValueError(f"There already exists an object called {dir_name}")
 
         self[dir_name] = Directory(root=self.root, parent=self)
         return self[dir_name]
@@ -94,6 +95,7 @@ class Root(Directory):
     """
     A root directory, which is a special case of a directory.
     """
+
     def __init__(self):
         super().__init__(root=self, parent=None)  # noqa
 
@@ -102,6 +104,7 @@ class FileSystem:
     """
     A file system, which is a set of directories.
     """
+
     def __init__(
         self,
         structure: dict[str, Directory[str, File | Directory]],
@@ -168,7 +171,9 @@ class FileSystem:
         Find the smallest directory that, if deleted, would free up enough space
         on the filesystem to run the update.
         """
-        reclaim = self.structure["/"].size - (self.total_disk_space - self.required_disk_space)
+        reclaim = self.structure["/"].size - (
+            self.total_disk_space - self.required_disk_space
+        )
         if reclaim < 0:
             return 0  # Already have enough space
 

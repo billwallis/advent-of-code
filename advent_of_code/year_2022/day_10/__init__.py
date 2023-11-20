@@ -6,7 +6,6 @@ https://adventofcode.com/2022/day/10/input
 from advent_of_code.year_2022.day_10.oop import solution as solution_oop
 from advent_of_code.year_2022.day_10.optimal import solution as solution_optimal
 
-
 SAMPLE_INPUT = """
 addx 15
 addx -11

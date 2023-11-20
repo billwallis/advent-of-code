@@ -43,7 +43,7 @@ def split_list_at_index(list_: list, index_: int) -> list[list, Any, list]:
     return [
         list_[:index_],
         list_[index_],
-        list_[1 + index_:],
+        list_[1 + index_ :],
     ]
 
 

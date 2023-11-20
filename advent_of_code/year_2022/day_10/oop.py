@@ -8,8 +8,9 @@ class Scheduler(dict):
     """
     The history of scheduled events.
     """
+
     def __init__(self, *args, **kwargs):
-        super(Scheduler, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
     def __setitem__(self, key: int, value: int):
         """
@@ -20,7 +21,7 @@ class Scheduler(dict):
         cycle.
         """
         value = self.get(key, []) + [value]
-        super(Scheduler, self).__setitem__(key, value)
+        super().__setitem__(key, value)
 
     def add_event(self, at: int, value: int) -> None:
         """
@@ -34,6 +35,7 @@ class CRT:
     """
     The CRT, which draws a sprite on some pixels.
     """
+
     def __init__(self, starting_position: int):
         self.position = starting_position
         self.drawing = ""
@@ -49,13 +51,14 @@ class CRT:
         """
         Draw a pixel on the drawing, which may be lit.
         """
-        self.drawing += ("#" if is_lit else ".")
+        self.drawing += "#" if is_lit else "."
 
 
 class CPU:
     """
     The CPU, which has a register and can take instructions.
     """
+
     def __init__(self):
         self.cycle = 0
         self.registries = {}
@@ -121,7 +124,9 @@ class CPU:
         Print the drawing of the CRT.
         """
         length = len(self.crt.drawing)
-        drawing = "\n".join([self.crt.drawing[40 * i:40 * (i + 1)] for i in range(length // 40)])
+        drawing = "\n".join(
+            [self.crt.drawing[40 * i : 40 * (i + 1)] for i in range(length // 40)]
+        )
 
         print(drawing)
         return drawing

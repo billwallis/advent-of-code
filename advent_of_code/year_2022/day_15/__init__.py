@@ -6,7 +6,6 @@ https://adventofcode.com/2022/day/15/input
 from advent_of_code.year_2022.day_15.oop import solution as solution_oop
 from advent_of_code.year_2022.day_15.optimal import solution as solution_optimal
 
-
 SAMPLE_INPUT = """
 Sensor at x=2, y=18: closest beacon is at x=-2, y=15
 Sensor at x=9, y=16: closest beacon is at x=10, y=16

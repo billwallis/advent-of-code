@@ -6,7 +6,6 @@ https://adventofcode.com/2022/day/16/input
 from advent_of_code.year_2022.day_16.oop import solution as solution_oop
 from advent_of_code.year_2022.day_16.optimal import solution as solution_optimal
 
-
 SAMPLE_INPUT = """
 Valve AA has flow rate=0; tunnels lead to valves DD, II, BB
 Valve BB has flow rate=13; tunnels lead to valves CC, AA

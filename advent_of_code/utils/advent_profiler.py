@@ -6,11 +6,7 @@ from typing import Callable
 import profiler
 
 
-def profile(
-    oop_solution: Callable,
-    optimal_solution: Callable,
-    repeat: int
-) -> None:
+def profile(oop_solution: Callable, optimal_solution: Callable, repeat: int) -> None:
     """
     Profile different solutions.
     """

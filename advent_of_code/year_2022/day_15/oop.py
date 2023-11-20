@@ -65,10 +65,7 @@ class Sensors:
 
     @classmethod
     def from_text(cls, text: str) -> Sensors:
-        return cls([
-            Sensor.from_text(sensor)
-            for sensor in text.split("\n")
-        ])
+        return cls([Sensor.from_text(sensor) for sensor in text.split("\n")])
 
     def set_neighbours(self) -> None:
         for sensor in self.sensors:
@@ -80,9 +77,7 @@ class Sensors:
         for sensor in self.sensors:
             # This is way too inefficient
             positions.extend(
-                neighbour
-                for neighbour in sensor.neighbours
-                if neighbour[1] == y
+                neighbour for neighbour in sensor.neighbours if neighbour[1] == y
             )
             beacons.append(sensor.beacon)
 
@@ -92,11 +87,21 @@ class Sensors:
         beacons = [sensor.beacon for sensor in self.sensors]
         min_sensor_x = min(sensor.position[0] for sensor in self.sensors)
         max_sensor_x = max(sensor.position[0] for sensor in self.sensors)
-        min_sensor_radius = max(sensor.radius for sensor in self.sensors if sensor.position[0] == min_sensor_x)
-        max_sensor_radius = max(sensor.radius for sensor in self.sensors if sensor.position[0] == max_sensor_x)
+        min_sensor_radius = max(
+            sensor.radius
+            for sensor in self.sensors
+            if sensor.position[0] == min_sensor_x
+        )
+        max_sensor_radius = max(
+            sensor.radius
+            for sensor in self.sensors
+            if sensor.position[0] == max_sensor_x
+        )
 
         positions = []
-        for x in range(min_sensor_x - min_sensor_radius, max_sensor_x + max_sensor_radius + 1):
+        for x in range(
+            min_sensor_x - min_sensor_radius, max_sensor_x + max_sensor_radius + 1
+        ):
             position = Position(x, y)
             positions.extend(
                 position

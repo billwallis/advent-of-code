@@ -22,6 +22,7 @@ class Packet(collections.abc.MutableSequence):
     This inheritance implementation is based on the following:
     - https://github.com/python/cpython/blob/208a7e957b812ad3b3733791845447677a704f3e/Lib/collections/__init__.py#L1174
     """
+
     def __init__(self, items: Packet | list = None):
         """
         Create a Packet, which is a list of integers or other packets.
@@ -100,7 +101,7 @@ class Packet(collections.abc.MutableSequence):
         return self < other or self == other
 
     def __gt__(self, other: Packet):
-        return not(self <= other)
+        return not (self <= other)
 
     def __ge__(self, other: Packet):
         return self > other or self == other
@@ -135,6 +136,7 @@ class PacketPair:
     """
     A pair of packets.
     """
+
     def __init__(self, left_packet: Packet, right_packet: Packet):
         self.left_packet = left_packet
         self.right_packet = right_packet
@@ -163,10 +165,12 @@ class PacketPairs:
 
     @classmethod
     def from_text(cls, text: str) -> PacketPairs:
-        return cls({
-            i + 1: PacketPair.from_text(text)
-            for i, text in enumerate(text.split("\n\n"))
-        })
+        return cls(
+            {
+                i + 1: PacketPair.from_text(text)
+                for i, text in enumerate(text.split("\n\n"))
+            }
+        )
 
     def pairs_in_correct_order(self) -> int:
         index_sum = 0
@@ -191,16 +195,13 @@ class Packets:
                 for packet in packet_text.split("\n")
                 if packet != ""
             ],
-            divider_packets
+            divider_packets,
         )
 
     def find_distress_signal(self) -> int:
         packets = sorted(self.packets)
 
-        return math.prod(
-            1 + packets.index(divider)
-            for divider in self.divider_packets
-        )
+        return math.prod(1 + packets.index(divider) for divider in self.divider_packets)
 
 
 def solution(input_: str) -> list[Any]:

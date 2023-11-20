@@ -1,6 +1,7 @@
 --- Day 19: Not Enough Minerals ---
 
 ### Part One
+
 Your scans show that the lava did indeed form obsidian!
 
 The wind has changed direction enough to stop sending lava droplets toward you, so you and the elephants exit the cave. As you do, you notice a collection of geodes around the pond. Perhaps you could use the obsidian to create some **geode-cracking robots** and break them open?
@@ -173,6 +174,4 @@ Determine the **quality level** of each blueprint by **multiplying that blueprin
 
 Determine the quality level of each blueprint using the largest number of geodes it could produce in 24 minutes. **What do you get if you add up the quality level of all of the blueprints in your list?**
 
-
 ### Part Two
-

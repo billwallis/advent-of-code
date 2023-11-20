@@ -21,6 +21,7 @@ class Stack(list):
     values), and the top of the stack is on the right of the list (highest index
     values).
     """
+
     def __init__(self, items: list[str]):
         super().__init__(items)
 
@@ -43,6 +44,7 @@ class Stacks(dict):
     number underneath the stack in the representation above) and the values are
     the Stack objects.
     """
+
     def __init__(self, stacks: dict[Stack]):
         super().__init__(stacks)
 
@@ -69,10 +71,7 @@ class Stacks(dict):
             }
         """
         row_stacks = [
-            [
-                row[(4 * i) + 1: 4 * (i + 1) - 2]
-                for i in range((len(row) + 1) // 4)
-            ]
+            [row[(4 * i) + 1 : 4 * (i + 1) - 2] for i in range((len(row) + 1) // 4)]
             for row in graphical_representation.split("\n")
         ]
         items: dict[Stack] = {
@@ -93,6 +92,7 @@ class Instruction:
     """
     An instruction to move some number of crates from one stack to another.
     """
+
     def __init__(self, move_quantity: int, from_stack: int, to_stack: int):
         self.move_quantity = move_quantity
         self.from_stack = from_stack
@@ -102,7 +102,9 @@ class Instruction:
         return f"move {self.move_quantity} from {self.from_stack} to {self.to_stack}"
 
     def __repr__(self):
-        return f"Instruction({self.move_quantity=}, {self.from_stack=}, {self.to_stack=})"
+        return (
+            f"Instruction({self.move_quantity=}, {self.from_stack=}, {self.to_stack=})"
+        )
 
     @classmethod
     def from_instruction_text(cls, instruction_text: str) -> Instruction:
@@ -114,7 +116,7 @@ class Instruction:
         implementation.
         """
         tokens = instruction_text.strip().split()
-        if tokens[::2] != ['move', 'from', 'to']:
+        if tokens[::2] != ["move", "from", "to"]:
             raise ValueError(f"Bad instruction text found: {instruction_text}")
 
         return cls(
@@ -128,6 +130,7 @@ class Procedure:
     """
     A procedure, which is a set of ordered Instruction objects.
     """
+
     def __init__(self, procedure: list[Instruction]):
         self.procedure = procedure
 
@@ -145,16 +148,19 @@ class Procedure:
         """
         Parse the procedure text into a Procedure object.
         """
-        return cls([
-            Instruction.from_instruction_text(instruction)
-            for instruction in procedure_text.strip().split("\n")
-        ])
+        return cls(
+            [
+                Instruction.from_instruction_text(instruction)
+                for instruction in procedure_text.strip().split("\n")
+            ]
+        )
 
 
 class StackHandler:
     """
     A processor to combine the stacks and procedure.
     """
+
     def __init__(self, stacks: Stacks, procedure: Procedure):
         self.stacks = stacks
         self.procedure = procedure
@@ -172,11 +178,16 @@ class StackHandler:
         """
         for instruction in self.procedure:
             if move_multiple_at_once:
-                crates = [self.stacks[instruction.from_stack].pop() for _ in range(instruction.move_quantity)]
+                crates = [
+                    self.stacks[instruction.from_stack].pop()
+                    for _ in range(instruction.move_quantity)
+                ]
                 self.stacks[instruction.to_stack] += crates[::-1]
             else:
                 for _ in range(instruction.move_quantity):
-                    self.stacks[instruction.to_stack].append(self.stacks[instruction.from_stack].pop())
+                    self.stacks[instruction.to_stack].append(
+                        self.stacks[instruction.from_stack].pop()
+                    )
 
     def get_top_of_each_stack(self) -> str:
         """

@@ -18,9 +18,13 @@ class Rucksack:
     """
     An elf's rucksack, consisting of items across 2 compartments.
     """
+
     def __init__(self, contents: str):
         self.contents = contents
-        self.compartments = contents[:len(contents) // 2], contents[len(contents) // 2:]
+        self.compartments = (
+            contents[: len(contents) // 2],
+            contents[len(contents) // 2 :],
+        )
 
     def __repr__(self):
         return f"Rucksack({self.contents=}, {self.compartments=})"
@@ -39,6 +43,7 @@ class Group:
     """
     A group of 3 rucksacks.
     """
+
     def __init__(self, rucksacks: list[Rucksack]):
         if (length := len(rucksacks)) != 3:
             warnings.warn(f"Expected 3 Rucksacks, found {length}")
@@ -61,11 +66,12 @@ class Rucksacks:
     """
     A collection of Rucksacks.
     """
+
     def __init__(self, all_contents: str):
         self.all_contents = all_contents
         self.rucksacks = [Rucksack(contents) for contents in all_contents.split("\n")]
         self.groups = [
-            Group(self.rucksacks[3 * i:3 * (i + 1)])
+            Group(self.rucksacks[3 * i : 3 * (i + 1)])
             for i in range(len(self.rucksacks) // 3)
         ]
 
@@ -74,18 +80,14 @@ class Rucksacks:
         Sum the priority of the items shared between the compartments.
         """
         return sum(
-            get_priority(rucksack.find_shared_item())
-            for rucksack in self.rucksacks
+            get_priority(rucksack.find_shared_item()) for rucksack in self.rucksacks
         )
 
     def sum_group_item_priorities(self) -> int:
         """
         Sum the priority of the items (badges) shared within the groups.
         """
-        return sum(
-            get_priority(group.find_badge())
-            for group in self.groups
-        )
+        return sum(get_priority(group.find_badge()) for group in self.groups)
 
 
 def solution(input_: str) -> list[Any]:
