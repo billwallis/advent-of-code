@@ -1,0 +1,32 @@
+---
+site_name: Advent of Code
+site_url: https://github.com/Bilbottom/advent-of-code/docs/
+site_description: Solutions to the Advent of Code problem sets.
+site_author: Bilbottom
+repo_url: https://github.com/Bilbottom/advent-of-code/
+
+theme:
+  name: material
+
+nav:
+  - Home: index.md
+  - Problems:
+      - 2022: 2022/index.md
+      - 2023: 2023/index.md
+  - Development Guide: dev-guide.md
+
+exclude_docs: |
+  *.py
+
+hooks:
+  - docs/hooks.py
+
+markdown_extensions:
+  - admonition
+  - callouts # https://github.com/oprypin/markdown-callouts
+  - pymdownx.details
+  - pymdownx.superfences
+
+plugins:
+  - search
+  - callouts # https://github.com/sondregronas/mkdocs-callouts

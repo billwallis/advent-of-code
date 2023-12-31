@@ -20,6 +20,7 @@ tqdm = "^4"
 test.optional = false
 dev.optional = false
 ide.optional = false
+docs.optional = true
 
 [tool.poetry.group.test.dependencies]
 pytest = "^7.0"
@@ -32,6 +33,11 @@ pre-commit = "^3"
 [tool.poetry.group.ide.dependencies]
 black = "*"
 
+[tool.poetry.group.docs.dependencies]
+mkdocs = "^1.5.3"
+mkdocs-material = "^9.5.3"
+mkdocs-callouts = "^1.10.0"
+markdown-callouts = "^0.3.0"
 
 [tool.isort]
 profile = "black"

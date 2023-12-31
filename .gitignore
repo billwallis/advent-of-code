@@ -1,4 +1,8 @@
 
+# Documentation
+docs/**/*.md
+!/docs/dev-guide.md
+
 # IntelliJ project files
 .idea
 *.iml
