@@ -1,6 +1,7 @@
 """
 Solution for day 6.
 """
+
 from __future__ import annotations
 
 import dataclasses

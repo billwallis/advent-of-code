@@ -1,6 +1,7 @@
 """
 Solution for day 4.
 """
+
 from __future__ import annotations
 
 import collections

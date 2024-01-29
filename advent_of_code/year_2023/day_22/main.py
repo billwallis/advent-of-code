@@ -1,6 +1,7 @@
 """
 Solution for day 22.
 """
+
 from __future__ import annotations
 
 import logging

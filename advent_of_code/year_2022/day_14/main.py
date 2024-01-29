@@ -1,6 +1,7 @@
 """
 OOP solution for day 14.
 """
+
 from __future__ import annotations
 
 import enum
@@ -36,9 +37,9 @@ class Point:
 
 class Cave:
     def __init__(self):
-        self.points: dict[
-            Position, Point
-        ] = {}  # Point per coordinate within the dimensions
+        self.points: dict[Position, Point] = (
+            {}
+        )  # Point per coordinate within the dimensions
         self.floor_level = 0
         self._add_starting_sand()
 

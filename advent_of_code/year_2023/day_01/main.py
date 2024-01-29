@@ -1,6 +1,7 @@
 """
 Solution for day 1.
 """
+
 from __future__ import annotations
 
 import functools

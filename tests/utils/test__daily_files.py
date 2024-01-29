@@ -1,6 +1,7 @@
 """
 Tests for the ``advent_of_code/utils/daily_files.py`` module.
 """
+
 import pathlib
 
 import pytest

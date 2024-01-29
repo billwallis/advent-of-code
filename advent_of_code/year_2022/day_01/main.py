@@ -3,6 +3,7 @@ https://adventofcode.com/
 
 OOP solution for day 1.
 """
+
 from __future__ import annotations
 
 from typing import Any

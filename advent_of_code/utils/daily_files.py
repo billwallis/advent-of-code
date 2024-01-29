@@ -1,6 +1,7 @@
 """
 Create the template files for the daily problems.
 """
+
 import datetime
 import pathlib
 import textwrap

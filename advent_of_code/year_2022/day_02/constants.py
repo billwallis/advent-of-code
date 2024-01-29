@@ -2,7 +2,6 @@
 Constants to use in the solutions.
 """
 
-
 ENCODING_OPPONENT = {
     "A": "rock",
     "B": "paper",
