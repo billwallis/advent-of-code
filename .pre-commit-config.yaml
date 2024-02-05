@@ -73,7 +73,7 @@ repos:
 
   # Sourcery (refactoring)
   - repo: https://github.com/sourcery-ai/sourcery
-    rev: v1.15.0
+    rev: v1.15.1b41
     hooks:
       - id: sourcery
         name: Check for refactoring opportunities
