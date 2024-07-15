@@ -60,13 +60,17 @@ D.. 4
 CCC 3
 BBB 2
 .A. 1
---- 0
+---
+
+0
+
 ```
 
 Rotating the perspective 90 degrees so the `y` axis now goes left to right, the same bricks are arranged like this:
 
 ```
- y
+
+y
 012
 .G. 9
 .G. 8
@@ -78,12 +82,14 @@ DDD 4
 B.. 2
 AAA 1
 --- 0
+
 ```
 
 Once all of the bricks fall downward as far as they can go, the stack looks like this, where `?` means bricks are hidden behind other bricks at that location:
 
 ```
- x
+
+x
 012
 .G. 6
 .G. 5
@@ -92,12 +98,14 @@ D.E 3 z
 ??? 2
 .A. 1
 --- 0
+
 ```
 
 Again from the side:
 
 ```
- y
+
+y
 012
 .G. 6
 .G. 5
@@ -106,6 +114,7 @@ Again from the side:
 B.C 2
 AAA 1
 --- 0
+
 ```
 
 Now that all of the bricks have settled, it becomes easier to tell which bricks are supporting which other bricks:
@@ -135,3 +144,4 @@ So, in this example, **5** bricks can be safely disintegrated.
 Figure how the blocks will settle based on the snapshot. Once they've settled, consider disintegrating a single brick; **how many bricks could be safely chosen as the one to get disintegrated?**
 
 ### Part Two
+```
