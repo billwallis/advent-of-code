@@ -4,23 +4,49 @@ Advent of Code!
 https://adventofcode.com/
 """
 
-import advent_of_code.solutions
-import advent_of_code.utils
+import datetime
+
+import arguably
+
+import advent_of_code
 
 
-# TODO: Add a CLI so that we don't need to comment code in and out
-def main() -> None:
-    """
-    Print the solutions.
-    """
-    # advent_of_code.utils.create_files(year=2024, day=1)
-
-    advent_of_code.solutions.print_solutions(
-        print_all=False,
-        year=2024,
-        print_day=1,
+def _parse_year_and_day(year: int | None, day: int | None) -> tuple[int, int]:
+    today = datetime.date.today()
+    return (
+        year or today.year,
+        day or today.day,
     )
 
 
+@arguably.command
+def __root__(
+    *,
+    year: int | None = None,
+    day: int | None = None,
+    print_all: bool = False,
+) -> None:
+    """
+    Print the solutions.
+    """
+    if arguably.is_target():
+        advent_of_code.print_solutions(
+            print_all,
+            *_parse_year_and_day(year, day),
+        )
+
+
+@arguably.command
+def create(
+    *,
+    year: int | None = None,
+    day: int | None = None,
+) -> None:
+    """
+    Create the daily files.
+    """
+    advent_of_code.create_files(*_parse_year_and_day(year, day))
+
+
 if __name__ == "__main__":
-    main()
+    arguably.run(name="advent_of_code")
