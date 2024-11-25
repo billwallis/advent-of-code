@@ -13,7 +13,8 @@ packages = [{include = "advent_of_code"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
-rich = "^12"
+duckdb = "^1"
+rich = "^13"
 tqdm = "^4"
 
 [tool.poetry.group]
