@@ -1,6 +1,7 @@
 """
 OOP solution for day 3.
 """
+
 import warnings
 from typing import Any
 

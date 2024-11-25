@@ -1,6 +1,7 @@
 """
 Hooks to run when building the site documentation.
 """
+
 import contextlib
 import os
 import re

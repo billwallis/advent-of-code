@@ -1,6 +1,7 @@
 """
 OOP solution for day 17.
 """
+
 from __future__ import annotations
 
 import abc
@@ -266,9 +267,7 @@ class Chamber:
                 image += (
                     "@"
                     if y_ == 0
-                    else "#"
-                    if Position(x, y_) in self.contents.keys()
-                    else "."
+                    else "#" if Position(x, y_) in self.contents.keys() else "."
                 )
 
         print(image)

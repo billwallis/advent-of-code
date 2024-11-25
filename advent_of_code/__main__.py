@@ -3,6 +3,7 @@ Advent of Code!
 
 https://adventofcode.com/
 """
+
 import advent_of_code.solutions
 import advent_of_code.utils
 

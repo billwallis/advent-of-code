@@ -2,7 +2,6 @@
 Constants to use in the solutions.
 """
 
-
 PRIORITY = {
     "a": 1,
     "b": 2,

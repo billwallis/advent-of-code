@@ -17,21 +17,16 @@ rich = "^12"
 tqdm = "^4"
 
 [tool.poetry.group]
-test.optional = false
 dev.optional = false
-ide.optional = false
+test.optional = false
 docs.optional = true
-
-[tool.poetry.group.test.dependencies]
-pytest = "^7.0"
-pytest-cov = "^4.0"
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^3"
 
-# Packages just for IDE integration
-[tool.poetry.group.ide.dependencies]
-black = "*"
+[tool.poetry.group.test.dependencies]
+pytest = "^7.0"
+pytest-cov = "^4.0"
 
 [tool.poetry.group.docs.dependencies]
 mkdocs = "^1.5.3"

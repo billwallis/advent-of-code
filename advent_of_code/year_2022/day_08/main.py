@@ -1,6 +1,7 @@
 """
 OOP solution for day 8.
 """
+
 from __future__ import annotations
 
 import itertools

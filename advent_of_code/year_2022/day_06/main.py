@@ -1,6 +1,7 @@
 """
 OOP solution for day 6.
 """
+
 from typing import Any
 
 

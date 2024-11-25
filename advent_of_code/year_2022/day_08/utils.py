@@ -1,6 +1,7 @@
 """
 Helpful objects to use to solve the day 8 problem.
 """
+
 from typing import Any
 
 

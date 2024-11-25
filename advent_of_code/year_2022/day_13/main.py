@@ -1,6 +1,7 @@
 """
 OOP solution for day 13.
 """
+
 from __future__ import annotations
 
 import collections.abc

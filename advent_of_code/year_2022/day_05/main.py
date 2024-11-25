@@ -1,6 +1,7 @@
 """
 OOP solution for day 5.
 """
+
 from __future__ import annotations
 
 from typing import Any

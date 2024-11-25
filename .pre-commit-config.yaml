@@ -1,5 +1,6 @@
 ---
 ci:
+  autoupdate_schedule: quarterly
   skip: [poetry-lock, sourcery]
 
 exclude: .*/(input|sample).*\.data
@@ -10,7 +11,7 @@ repos:
       - id: identity
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
+    rev: v5.0.0
     hooks:
       - id: trailing-whitespace
         name: Remove trailing whitespace
@@ -30,7 +31,7 @@ repos:
         name: Validate Python
 
   - repo: https://github.com/python-poetry/poetry
-    rev: 1.7.0
+    rev: 1.8.0
     hooks:
       - id: poetry-check
         name: Check that the Poetry configuration is valid
@@ -39,26 +40,26 @@ repos:
 
   # Formatting
   - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: v3.1.0
+    rev: v4.0.0-alpha.8
     hooks:
       - id: prettier
         name: Make code pretty
 
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.15.0
+    rev: v3.17.0
     hooks:
       - id: pyupgrade
         args: [--py38-plus]
         name: Align Python code to latest syntax
 
   - repo: https://github.com/psf/black
-    rev: 23.11.0
+    rev: 24.10.0
     hooks:
       - id: black
         name: Check Python formatting
 
   - repo: https://github.com/pycqa/isort
-    rev: 5.12.0
+    rev: 5.13.2
     hooks:
       - id: isort
         name: Sort Python import statements
@@ -73,7 +74,7 @@ repos:
 
   # Sourcery (refactoring)
   - repo: https://github.com/sourcery-ai/sourcery
-    rev: v1.14.0
+    rev: v1.23.0
     hooks:
       - id: sourcery
         name: Check for refactoring opportunities

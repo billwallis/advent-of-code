@@ -1,6 +1,7 @@
 """
 Solutions to the Advent of Code problems.
 """
+
 import datetime
 import importlib
 import os

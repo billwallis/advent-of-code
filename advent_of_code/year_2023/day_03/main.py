@@ -1,6 +1,7 @@
 """
 Solution for day 3.
 """
+
 from __future__ import annotations
 
 import collections
@@ -214,7 +215,7 @@ class EngineSchematic:
 
         return image
 
-    def _part_numbers(self) -> Generator[PartNumber, None, None]:
+    def _part_numbers(self) -> Generator[PartNumber]:
         """
         Return the part numbers in the schematic.
         """
@@ -252,7 +253,7 @@ class EngineSchematic:
         # Can't cache a generator, so we cache the list instead
         return list(self._part_numbers())
 
-    def gear_ratios(self) -> Generator[int, None, None]:
+    def gear_ratios(self) -> Generator[int]:
         """
         Return the gear ratios in the schematic.
 
