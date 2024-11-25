@@ -11,15 +11,17 @@ authors = ["Bilbottom"]
 readme = "README.md"
 packages = [{include = "advent_of_code"}]
 
+[tool.poetry.scripts]
+aoc = "advent_of_code.__main__:arguably.run"
+
 [tool.poetry.dependencies]
 python = "^3.11"
 duckdb = "^1"
-rich = "^13"
-tqdm = "^4"
+arguably = "^1.3.0"
 
 [tool.poetry.group]
-dev.optional = false
-test.optional = false
+dev.optional = true
+test.optional = true
 docs.optional = true
 
 [tool.poetry.group.dev.dependencies]
