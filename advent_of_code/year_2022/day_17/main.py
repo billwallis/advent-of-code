@@ -213,7 +213,9 @@ class Chamber:
         moved_rock = copy.copy(rock)
         moved_rock.move(direction)
 
-        return any(position in self.contents.keys() for position in moved_rock.shape)
+        return any(
+            position in self.contents.keys() for position in moved_rock.shape
+        )
 
     def jet_movement(self, rock: Rock) -> Position:
         """
@@ -222,10 +224,11 @@ class Chamber:
         jet = self.jets.get()
         if self.is_conflict(rock, jet):
             return ZERO
-        elif jet == LEFT:
+        if jet == LEFT:
             return ZERO if rock.top_left[0] <= 1 else LEFT
-        elif jet == RIGHT:
+        if jet == RIGHT:
             return ZERO if rock.right_boundary >= (self.width - 1) else RIGHT
+        raise ValueError("Invalid jet movement")
 
     def move_rock(self, rock: Rock) -> None:
         """
@@ -267,7 +270,9 @@ class Chamber:
                 image += (
                     "@"
                     if y_ == 0
-                    else "#" if Position(x, y_) in self.contents.keys() else "."
+                    else "#"
+                    if Position(x, y_) in self.contents.keys()
+                    else "."
                 )
 
         print(image)

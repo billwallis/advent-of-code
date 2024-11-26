@@ -50,7 +50,10 @@ class Stacks(dict):
         super().__init__(stacks)
 
     @classmethod
-    def from_graphical_representation(cls, graphical_representation: str) -> Stacks:
+    def from_graphical_representation(
+        cls,
+        graphical_representation: str,
+    ) -> Stacks:
         """
         Take the stacks from their graphical representation and convert them
         into dictionaries.
@@ -72,10 +75,13 @@ class Stacks(dict):
             }
         """
         row_stacks = [
-            [row[(4 * i) + 1 : 4 * (i + 1) - 2] for i in range((len(row) + 1) // 4)]
+            [
+                row[(4 * i) + 1 : 4 * (i + 1) - 2]
+                for i in range((len(row) + 1) // 4)
+            ]
             for row in graphical_representation.split("\n")
         ]
-        items: dict[Stack] = {
+        items: dict[int, Stack] = {
             int(col_stacks[0]): Stack(
                 items=[
                     col_stacks[i]
@@ -103,9 +109,7 @@ class Instruction:
         return f"move {self.move_quantity} from {self.from_stack} to {self.to_stack}"
 
     def __repr__(self):
-        return (
-            f"Instruction({self.move_quantity=}, {self.from_stack=}, {self.to_stack=})"
-        )
+        return f"Instruction({self.move_quantity=}, {self.from_stack=}, {self.to_stack=})"
 
     @classmethod
     def from_instruction_text(cls, instruction_text: str) -> Instruction:

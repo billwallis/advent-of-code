@@ -7,7 +7,7 @@ from __future__ import annotations
 import enum
 from typing import Any
 
-import advent_of_code.year_2022.day_02.constants as constants
+from advent_of_code.year_2022.day_02 import constants
 
 
 class Hand(enum.Enum):
@@ -64,12 +64,11 @@ def get_result(opponent: Hand, player: Hand) -> str:
     """
     if player > opponent:
         return "win"
-    elif player == opponent:
+    if player == opponent:
         return "draw"
-    elif player < opponent:
+    if player < opponent:
         return "lose"
-    else:
-        raise ValueError(f"Can't compare hands: {player=}, {opponent=}")
+    raise ValueError(f"Can't compare hands: {player=}, {opponent=}")
 
 
 def get_player_hand(opponent: Hand, result: str) -> Hand:
@@ -177,12 +176,12 @@ class Strategy:
 
     def __init__(self, strategy_input: str, part: int):
         """"""
-        if part == 1:
+        if part == constants.PART_1:
             self.rounds = [
                 Round.from_part_1(round_strategy)
                 for round_strategy in strategy_input.split("\n")
             ]
-        elif part == 2:
+        elif part == constants.PART_2:
             self.rounds = [
                 Round.from_part_2(round_strategy)
                 for round_strategy in strategy_input.split("\n")

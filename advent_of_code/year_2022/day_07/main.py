@@ -5,7 +5,8 @@ OOP solution for day 7.
 from __future__ import annotations
 
 import json
-from typing import Any, Generator
+from collections.abc import Generator
+from typing import Any
 
 
 def _is_command(line: str) -> bool:
@@ -73,7 +74,9 @@ class Directory(dict):
         Add a child directory to this directory.
         """
         if dir_name in self:
-            raise ValueError(f"There already exists an object called {dir_name}")
+            raise ValueError(
+                f"There already exists an object called {dir_name}"
+            )
 
         self[dir_name] = Directory(root=self.root, parent=self)
         return self[dir_name]
@@ -98,7 +101,7 @@ class Root(Directory):
     """
 
     def __init__(self):
-        super().__init__(root=self, parent=None)  # noqa
+        super().__init__(root=self, parent=None)
 
 
 class FileSystem:
@@ -143,7 +146,10 @@ class FileSystem:
                 if _is_directory(row):
                     curr_dir.add_directory(details[1])
                 else:
-                    curr_dir.add_file(file_name=details[1], file_size=int(details[0]))
+                    curr_dir.add_file(
+                        file_name=details[1],
+                        file_size=int(details[0]),
+                    )
 
         return cls(structure={"/": root}, total_disk_space=total_disk_space)
 
@@ -163,7 +169,7 @@ class FileSystem:
         """
         return sum(
             size
-            for dir_name, size in self._get_directory_sizes(self.structure)  # noqa
+            for dir_name, size in self._get_directory_sizes(self.structure)
             if size <= max_size
         )
 
@@ -180,7 +186,7 @@ class FileSystem:
 
         return min(
             size
-            for dir_name, size in self._get_directory_sizes(self.structure)  # noqa
+            for dir_name, size in self._get_directory_sizes(self.structure)
             if size >= reclaim
         )
 

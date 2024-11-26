@@ -4,6 +4,7 @@ OOP solution for day 13.
 
 from __future__ import annotations
 
+import ast
 import collections.abc
 import math
 from typing import Any
@@ -47,7 +48,11 @@ class Packet(collections.abc.MutableSequence):
         return len(self.data)
 
     def __getitem__(self, i: int):
-        return self.__class__(self.data[i]) if isinstance(i, slice) else self.data[i]
+        return (
+            self.__class__(self.data[i])
+            if isinstance(i, slice)
+            else self.data[i]
+        )
 
     def __setitem__(self, i: int, item: Any):
         self.data[i] = item
@@ -67,14 +72,17 @@ class Packet(collections.abc.MutableSequence):
 
         # sourcery skip: merge-duplicate-blocks, remove-redundant-if
         for i in range(max(len(self), len(other))):
-            left, right = list_to_packet(self.get(i)), list_to_packet(other.get(i))
+            left, right = (
+                list_to_packet(self.get(i)),
+                list_to_packet(other.get(i)),
+            )
             # print(f"Compare {left} vs {right}")
 
             if left is None and right is not None:
                 # The left packet is smaller
                 # print("Left side ran out of items, so inputs are in the right order")
                 return True
-            elif right is None:
+            if right is None:
                 # The right packet is smaller
                 # print("Right side ran out of items, so inputs are not in the right order")
                 return False
@@ -91,7 +99,7 @@ class Packet(collections.abc.MutableSequence):
                 # The left packet is smaller
                 # print(f"    Left side is smaller, so inputs are in the right order ({left} < {right})")
                 return True
-            elif left > right:
+            if left > right:
                 # The right packet is smaller
                 # print(f"    Right side is smaller, so inputs are not in the right order ({left} > {right})")
                 return False
@@ -130,7 +138,7 @@ class Packet(collections.abc.MutableSequence):
         """
         Convert the text representation into a packet.
         """
-        return cls(list(eval(text)))
+        return cls(list(ast.literal_eval(text)))
 
 
 class PacketPair:
@@ -189,7 +197,11 @@ class Packets:
         self.divider_packets = divider_packets
 
     @classmethod
-    def from_text(cls, packet_text: str, divider_packets: list[Packet]) -> Packets:
+    def from_text(
+        cls,
+        packet_text: str,
+        divider_packets: list[Packet],
+    ) -> Packets:
         return cls(
             [
                 Packet.from_text(packet)
@@ -202,7 +214,9 @@ class Packets:
     def find_distress_signal(self) -> int:
         packets = sorted(self.packets)
 
-        return math.prod(1 + packets.index(divider) for divider in self.divider_packets)
+        return math.prod(
+            1 + packets.index(divider) for divider in self.divider_packets
+        )
 
 
 def solution(input_: str) -> list[Any]:

@@ -4,6 +4,7 @@ OOP solution for day 11.
 
 from __future__ import annotations
 
+import ast
 import math
 from typing import Any
 
@@ -92,7 +93,9 @@ class Monkey:
         lines = [line.strip() for line in text.strip().split("\n")]
 
         monkey_id = int(lines[0][:-1].replace("Monkey ", ""))
-        items = eval(f"[{lines[1].replace('Starting items: ', '')}]")
+        items = ast.literal_eval(
+            f"[{lines[1].replace('Starting items: ', '')}]"
+        )
         starting_items = [Item(item) for item in items]
         operation = lines[2].replace("Operation: ", "")
         test = lines[3].replace("Test: ", "")
@@ -114,7 +117,7 @@ class Monkey:
         Evaluate the operation.
         """
         assert "old" in self._operation
-        return eval(self._operation.replace("new = ", ""))
+        return ast.literal_eval(self._operation.replace("new = ", ""))
 
     def test(self, num: int) -> bool:
         """
@@ -123,10 +126,9 @@ class Monkey:
         components = self._test.split()
         if components[0] == "divisible":
             return (num % int(components[2])) == 0
-        else:
-            raise NotImplementedError(
-                f"Monkey.test() not implemented for test {self._test}"
-            )
+        raise NotImplementedError(
+            f"Monkey.test() not implemented for test {self._test}"
+        )
 
     def throw_to(self, item: Item) -> int:
         """
@@ -135,7 +137,10 @@ class Monkey:
         return self._outcome[self.test(item.worry_level)]
 
     def inspect_item(
-        self, item: Item, worry_divisor: int, total_divisor: int = None
+        self,
+        item: Item,
+        worry_divisor: int,
+        total_divisor: int | None = None,
     ) -> None:
         """
         Inspect an item that the monkey is holding.
@@ -159,7 +164,9 @@ class Rounds:
     def __init__(self, monkeys: dict[int, Monkey], worry_divisor: int):
         self.monkeys = monkeys
         self.worry_divisor = worry_divisor
-        self.total_divisor = math.prod([monkey.divisor for monkey in monkeys.values()])
+        self.total_divisor = math.prod(
+            [monkey.divisor for monkey in monkeys.values()]
+        )
 
     def move_item(self, item: Item, from_id: int, to_id: int) -> None:
         """
@@ -175,7 +182,11 @@ class Rounds:
         for monkey_id, monkey in self.monkeys.items():
             while monkey.items:
                 item = monkey.items[0]
-                monkey.inspect_item(item, self.worry_divisor, self.total_divisor)
+                monkey.inspect_item(
+                    item,
+                    self.worry_divisor,
+                    self.total_divisor,
+                )
                 self.move_item(
                     item=item,
                     from_id=monkey_id,
@@ -198,7 +209,9 @@ class Rounds:
         """
         print(f"== After round {round_number} ==")
         for monkey_id, monkey in self.monkeys.items():
-            print(f"Monkey {monkey_id} inspected items {monkey.inspection_count} times")
+            print(
+                f"Monkey {monkey_id} inspected items {monkey.inspection_count} times"
+            )
 
     @property
     def monkey_business(self) -> int:
@@ -218,7 +231,9 @@ def make_monkeys(input_: str) -> dict[int, Monkey]:
     """
     return {
         monkey.id: monkey
-        for monkey in [Monkey.from_string_block(line) for line in input_.split("\n\n")]
+        for monkey in [
+            Monkey.from_string_block(line) for line in input_.split("\n\n")
+        ]
     }
 
 

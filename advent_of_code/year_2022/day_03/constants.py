@@ -2,6 +2,7 @@
 Constants to use in the solutions.
 """
 
+GROUP_RUCKSACK_SIZE = 3
 PRIORITY = {
     "a": 1,
     "b": 2,

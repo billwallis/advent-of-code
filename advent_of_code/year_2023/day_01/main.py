@@ -7,7 +7,7 @@ from __future__ import annotations
 import functools
 import logging
 import pathlib
-from typing import Callable
+from collections.abc import Callable
 
 Procedure = Callable[[str], int]
 
@@ -66,7 +66,9 @@ class CalibrationDocument:
         The file name is relative to the current module.
         """
         file = pathlib.Path(__file__).parent / filename
-        logging.info(f"Parsing the following file into a calibration document: {file}")
+        logging.info(
+            f"Parsing the following file into a calibration document: {file}"
+        )
 
         return cls.from_text(file.read_text("utf-8"))
 
@@ -103,6 +105,7 @@ def _get_digit(line: str, digits: list[str]) -> str | None:
         logging.debug(f"Searching {line[: len(digit)]} for {digit}")
         if (token := line[: len(digit)]) == digit:
             return token
+    return None
 
 
 def first_and_last_number(text: str) -> int:
@@ -123,11 +126,15 @@ def first_and_last_number(text: str) -> int:
 
     rev_text = text[::-1]
     for i in range(len(rev_text)):
-        if last_number := _get_digit(rev_text[i:], [d[::-1] for d in list(DIGITS)]):
+        if last_number := _get_digit(
+            rev_text[i:], [d[::-1] for d in list(DIGITS)]
+        ):
             last_number = last_number[::-1]
             break
 
-    logging.debug(f"The text {text} has the digits {[first_number, last_number]}")
+    logging.debug(
+        f"The text {text} has the digits {[first_number, last_number]}"
+    )
     return int("".join([DIGITS[first_number], DIGITS[last_number]]))
 
 

@@ -9,7 +9,7 @@ from typing import Any
 
 from utils.geometry import Position
 
-import advent_of_code.year_2022.day_08.utils as utils
+from advent_of_code.year_2022.day_08 import utils
 
 
 class Tree:
@@ -28,10 +28,14 @@ class Tree:
         return f"Tree(height={self.height})"
 
     def __eq__(self, other: Tree | int):
-        return self.height == (other.height if isinstance(other, Tree) else other)
+        return self.height == (
+            other.height if isinstance(other, Tree) else other
+        )
 
     def __gt__(self, other: Tree | int):
-        return self.height > (other.height if isinstance(other, Tree) else other)
+        return self.height > (
+            other.height if isinstance(other, Tree) else other
+        )
 
     def __ge__(self, other: Tree | int):
         return self > other or self == other
@@ -75,10 +79,9 @@ class Forest:
         """
         if isinstance(position, int):
             return utils.chained_get(self.forest, position)
-        elif isinstance(position, tuple):
+        if isinstance(position, tuple):
             return utils.chained_get(self.forest, *position)
-        else:
-            raise ValueError(f"Expected int or tuple, found {type(position)}")
+        raise ValueError(f"Expected int or tuple, found {type(position)}")
 
     @property
     def range(self) -> itertools.product:
@@ -113,7 +116,9 @@ class Forest:
         """
         Convert the string representation of the trees into a forest.
         """
-        return [[Tree(tree) for tree in trees] for trees in self._trees.split("\n")]
+        return [
+            [Tree(tree) for tree in trees] for trees in self._trees.split("\n")
+        ]
 
     def set_visibility(self) -> None:
         """
@@ -131,8 +136,14 @@ class Forest:
         same_row = self[position[0]]
         same_col = [row[position[1]] for row in self]
 
-        split_row = utils.split_list_at_index(list_=same_row, index_=position[1])
-        split_col = utils.split_list_at_index(list_=same_col, index_=position[0])
+        split_row = utils.split_list_at_index(
+            list_=same_row,
+            index_=position[1],
+        )
+        split_col = utils.split_list_at_index(
+            list_=same_col,
+            index_=position[0],
+        )
 
         return [
             *split_row[:3:2],  # left, right
@@ -162,7 +173,8 @@ class Forest:
         # A tree is visible if it can be seen from at least one direction
         tree = self[pos]
         return any(
-            tree.height > max(others) for others in self.get_surrounding_trees(pos)
+            tree.height > max(others)
+            for others in self.get_surrounding_trees(pos)
         )
 
     def compute_scenic_score(self, position: Position) -> int:
@@ -195,7 +207,8 @@ class Forest:
         Return the number of trees that are visible is this forest.
         """
         return max(
-            self.compute_scenic_score(Position(row, col)) for row, col in self.range
+            self.compute_scenic_score(Position(row, col))
+            for row, col in self.range
         )
 
 

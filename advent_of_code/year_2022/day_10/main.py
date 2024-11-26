@@ -21,8 +21,7 @@ class Scheduler(dict):
         items. This is because many event may need to be run on a particular
         cycle.
         """
-        value = self.get(key, []) + [value]
-        super().__setitem__(key, value)
+        super().__setitem__(key, [*self.get(key, []), value])
 
     def add_event(self, at: int, value: int) -> None:
         """
@@ -92,10 +91,11 @@ class CPU:
         """
         if instruction == "noop":
             return 1
-        elif instruction.startswith("addx"):
+        if instruction.startswith("addx"):
             vals = instruction.split()
             self.scheduler.add_event(at=self.cycle + 2, value=int(vals[1]))
             return 2
+        raise ValueError(f"Unknown instruction: {instruction}")
 
     def resolve_schedule(self) -> None:
         """
@@ -104,7 +104,11 @@ class CPU:
         self.registries["X"] += sum(self.scheduler.get(self.cycle, [0]))
         self.crt.position = self.registries["X"]
 
-    def execute(self, instructions: list[str], interesting_signals: list[int]) -> None:
+    def execute(
+        self,
+        instructions: list[str],
+        interesting_signals: list[int],
+    ) -> None:
         """
         Execute a set of instructions.
         """
@@ -126,7 +130,10 @@ class CPU:
         """
         length = len(self.crt.drawing)
         drawing = "\n".join(
-            [self.crt.drawing[40 * i : 40 * (i + 1)] for i in range(length // 40)]
+            [
+                self.crt.drawing[40 * i : 40 * (i + 1)]
+                for i in range(length // 40)
+            ]
         )
 
         print(drawing)
@@ -147,6 +154,9 @@ def solution(input_: str) -> list[Any]:
     print()
 
     return [
-        sum(cycle * strength for cycle, strength in cpu.interesting_signals.items()),
+        sum(
+            cycle * strength
+            for cycle, strength in cpu.interesting_signals.items()
+        ),
         final_drawing,
     ]

@@ -23,7 +23,9 @@ class Sensor:
     def from_text(cls, text: str) -> Sensor:
         sensor, beacon = text.split(":")
         sensor = sensor.replace("Sensor at x=", "").replace(" y=", "")
-        beacon = beacon.replace(" closest beacon is at x=", "").replace(" y=", "")
+        beacon = beacon.replace(" closest beacon is at x=", "").replace(
+            " y=", ""
+        )
 
         return cls(
             position=Position.from_text(sensor),
@@ -47,7 +49,9 @@ class Sensor:
 
         self.neighbours = [
             self.position + position
-            for position in set(top_right + top_left + bottom_right + bottom_left)
+            for position in set(
+                top_right + top_left + bottom_right + bottom_left
+            )
         ]
 
 
@@ -78,11 +82,15 @@ class Sensors:
         for sensor in self.sensors:
             # This is way too inefficient
             positions.extend(
-                neighbour for neighbour in sensor.neighbours if neighbour[1] == y
+                neighbour
+                for neighbour in sensor.neighbours
+                if neighbour[1] == y
             )
             beacons.append(sensor.beacon)
 
-        return len({position for position in positions if position not in beacons})
+        return len(
+            {position for position in positions if position not in beacons}
+        )
 
     def count_positions_with_no_beacons(self, y: int) -> int:
         beacons = [sensor.beacon for sensor in self.sensors]
@@ -101,16 +109,20 @@ class Sensors:
 
         positions = []
         for x in range(
-            min_sensor_x - min_sensor_radius, max_sensor_x + max_sensor_radius + 1
+            min_sensor_x - min_sensor_radius,
+            max_sensor_x + max_sensor_radius + 1,
         ):
             position = Position(x, y)
             positions.extend(
                 position
                 for sensor in self.sensors
-                if manhattan_distance(position, sensor.position) <= sensor.radius
+                if manhattan_distance(position, sensor.position)
+                <= sensor.radius
             )
 
-        return len({position for position in positions if position not in beacons})
+        return len(
+            {position for position in positions if position not in beacons}
+        )
 
 
 # noinspection DuplicatedCode

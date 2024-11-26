@@ -75,7 +75,9 @@ class Game:
 
         return cls(
             id_=int(game_id.split()[1]),
-            revealed_cubes=[Cubes.from_text(s) for s in revealed_cubes.split(";")],
+            revealed_cubes=[
+                Cubes.from_text(s) for s in revealed_cubes.split(";")
+            ],
         )
 
     def is_possible(self, bag_configuration: BagConfiguration) -> bool:
@@ -113,7 +115,9 @@ class Game:
                     cube_count,
                 )
 
-        return functools.reduce(operator.mul, minimal_bad_configuration.values())
+        return functools.reduce(
+            operator.mul, minimal_bad_configuration.values()
+        )
 
 
 class Games(collections.UserDict):

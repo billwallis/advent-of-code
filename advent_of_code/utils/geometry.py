@@ -4,6 +4,7 @@ Classes representing objects from geometry.
 
 from __future__ import annotations
 
+import ast
 import itertools
 from typing import Any
 
@@ -32,7 +33,9 @@ class Position(tuple):
         return super().__repr__()
 
     def __add__(self, other: Position | tuple[int,]):
-        other = Position.from_tuple(other) if isinstance(other, tuple) else other
+        other = (
+            Position.from_tuple(other) if isinstance(other, tuple) else other
+        )
         length = max(len(self), len(other))
 
         return Position(
@@ -46,7 +49,9 @@ class Position(tuple):
         return self.__add__(other)
 
     def __sub__(self, other):
-        other = Position.from_tuple(other) if isinstance(other, tuple) else other
+        other = (
+            Position.from_tuple(other) if isinstance(other, tuple) else other
+        )
         length = max(len(self), len(other))
 
         return Position(
@@ -79,7 +84,9 @@ class Position(tuple):
                 f"Can't divide a Position by an object of type {type(other)}"
             )
 
-        return Position(*(_intify(self[index_] / other) for index_ in range(len(self))))
+        return Position(
+            *(_intify(self[index_] / other) for index_ in range(len(self)))
+        )
 
     def __rtruediv__(self, other: int):
         return self.__truediv__(other)
@@ -111,7 +118,7 @@ class Position(tuple):
         """
         Construct a Position from text, such as ``123,4``.
         """
-        return cls.from_tuple(eval(f"({text})"))
+        return cls.from_tuple(ast.literal_eval(f"({text})"))
 
 
 def manhattan_distance(x: Position, y: Position) -> int:
@@ -138,5 +145,7 @@ class Area:
         if p1y > p2y:
             p1y, p2y = p2y, p1y
 
-        for y, x in itertools.product(range(1 + p2y - p1y), range(1 + p2x - p1x)):
+        for y, x in itertools.product(
+            range(1 + p2y - p1y), range(1 + p2x - p1x)
+        ):
             yield Position(p1x + x, p1y + y)

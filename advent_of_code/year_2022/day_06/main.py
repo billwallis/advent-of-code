@@ -20,7 +20,8 @@ class DatastreamBuffer:
         return f"DatastreamBuffer({self.message=})"
 
     def find_position_of_distinct_sequence(
-        self, number_of_distinct_characters: int
+        self,
+        number_of_distinct_characters: int,
     ) -> int:
         """
         Find the first position where the preceding number of distinct
@@ -35,6 +36,7 @@ class DatastreamBuffer:
             ):
                 # Python starts counting at 0, but AoC starts counting at 1
                 return pos + 1
+        raise ValueError("No distinct sequence found")
 
 
 def solution(input_: str) -> list[Any]:

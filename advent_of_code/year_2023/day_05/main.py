@@ -29,6 +29,7 @@ def _next_map(map_name: str) -> str:
     for map_ in ALMANAC_MAPS:
         if map_.startswith(next_map_prefix):
             return map_
+    raise ValueError(f"Could not find next map for {map_name}")
 
 
 @dataclasses.dataclass
@@ -54,8 +55,7 @@ class MappingParser:
         """
         if self.source_start <= source < self.source_end:
             return self.destination_start + (source - self.source_start)
-        else:
-            return None
+        return None
 
 
 class Map:
@@ -228,6 +228,12 @@ def solution(input_: str) -> list[Any]:
     seeds, almanac = parse_input(input_)
 
     return [
-        min(almanac.get_location(seed) for seed in seeds.parse_seeds(as_range=False)),
-        min(almanac.get_location(seed) for seed in seeds.parse_seeds(as_range=True)),
+        min(
+            almanac.get_location(seed)
+            for seed in seeds.parse_seeds(as_range=False)
+        ),
+        min(
+            almanac.get_location(seed)
+            for seed in seeds.parse_seeds(as_range=True)
+        ),
     ]

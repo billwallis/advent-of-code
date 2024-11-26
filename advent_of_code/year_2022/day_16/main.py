@@ -45,6 +45,7 @@ class Valves:
         for valve in self.valves:
             if valve.name == item:
                 return valve
+        raise ValueError(f"Valve '{item}' not found")
 
     @classmethod
     def from_text(cls, text: str) -> Valves:
@@ -114,7 +115,9 @@ class Route:
 
     def run(self, next_valve: Valve | None) -> None:
         assert (
-            self.current_valve in self.open_valves if self.current_valve.open else True
+            self.current_valve in self.open_valves
+            if self.current_valve.open
+            else True
         )
         self._resolve_open_valves()
         self._resolve_action(next_valve)

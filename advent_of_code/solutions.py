@@ -7,7 +7,7 @@ import importlib
 import os
 import pathlib
 import types
-from typing import Callable
+from collections.abc import Callable
 
 from advent_of_code.constants import ROOT
 
@@ -32,7 +32,9 @@ class Solution:
         self.year = year
         self.path = ROOT / f"year_{year}/day_{day:02d}"
         self.module = importlib.import_module(
-            str("advent_of_code" / self.path.relative_to(ROOT)).replace(os.sep, "."),
+            str("advent_of_code" / self.path.relative_to(ROOT)).replace(
+                os.sep, "."
+            ),
             str(ROOT),
         )
         self.solution = getattr(self.module, "solution")
@@ -51,18 +53,12 @@ class Solution:
         print(self.solution(input_=self.read_input()), "\n", sep="")
 
 
-def print_solutions(
-    print_all: bool,
-    year: int,
-    print_day: int = None,
-) -> None:
+def print_solutions(print_all: bool, year: int, day: int) -> None:
     """
     Print the solutions.
     """
-    day_today = print_day or datetime.date.today().day
-
     if print_all:
-        for i in range(day_today):
+        for i in range(day):
             Solution(year=year, day=i + 1).print_solution()
     else:
-        Solution(year=year, day=day_today).print_solution()
+        Solution(year=year, day=day).print_solution()

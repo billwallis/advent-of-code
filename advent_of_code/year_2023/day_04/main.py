@@ -39,8 +39,12 @@ class Scratchcard:
         """
         Return the scratchcard as a string.
         """
-        winning_numbers = " ".join([f"{number:>2}" for number in self.winning_numbers])
-        held_numbers = " ".join([f"{number:>2}" for number in self.held_numbers])
+        winning_numbers = " ".join(
+            [f"{number:>2}" for number in self.winning_numbers]
+        )
+        held_numbers = " ".join(
+            [f"{number:>2}" for number in self.held_numbers]
+        )
 
         return f"Card {self.card_id}: {winning_numbers} | {held_numbers}"
 
@@ -60,8 +64,12 @@ class Scratchcard:
 
         return cls(
             card_id=int(card_id.split()[1]),
-            winning_numbers=[int(number) for number in winning_numbers.strip().split()],
-            held_numbers=[int(number) for number in held_numbers.strip().split()],
+            winning_numbers=[
+                int(number) for number in winning_numbers.strip().split()
+            ],
+            held_numbers=[
+                int(number) for number in held_numbers.strip().split()
+            ],
         )
 
     @functools.cached_property

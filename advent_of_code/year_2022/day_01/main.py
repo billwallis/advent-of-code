@@ -8,6 +8,8 @@ from __future__ import annotations
 
 from typing import Any
 
+ELF_LIMIT = 3
+
 
 class Elves:
     """
@@ -34,7 +36,7 @@ class Elves:
 
     def _update_largest_elves(self, new_elf):
         self.largest_elves.append(new_elf)
-        if len(self.largest_elves) > 3:
+        if len(self.largest_elves) > ELF_LIMIT:
             self.largest_elves.sort()
             self.largest_elves.pop(0)
 
@@ -64,9 +66,7 @@ class Elf:
 
     def __repr__(self):
         calorie_list = self.calorie_list.replace("\n", ",")
-        return (
-            f"Elf(id={self.id}, calorie_list={calorie_list}, calories={self.calories})"
-        )
+        return f"Elf(id={self.id}, calorie_list={calorie_list}, calories={self.calories})"
 
     def __lt__(self, other: Elf):
         return self.calories < other.calories
