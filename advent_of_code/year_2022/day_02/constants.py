@@ -2,6 +2,9 @@
 Constants to use in the solutions.
 """
 
+PART_1 = 1
+PART_2 = 2
+
 ENCODING_OPPONENT = {
     "A": "rock",
     "B": "paper",
@@ -17,6 +20,7 @@ ENCODING_PLAYER_2 = {
     "Y": "draw",
     "Z": "win",
 }
+
 SCORES = {
     "rock": 1,
     "paper": 2,

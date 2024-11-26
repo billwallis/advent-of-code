@@ -6,8 +6,8 @@ import pathlib
 
 import pytest
 
-import advent_of_code.utils.daily_files as daily_files
-from advent_of_code.constants import ROOT
+# import advent_of_code.utils.daily_files as daily_files
+# from advent_of_code.constants import ROOT
 
 
 @pytest.fixture

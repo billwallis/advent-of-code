@@ -10,9 +10,11 @@ import dataclasses
 import functools
 import logging
 import pathlib
-from typing import Generator
+from collections.abc import Generator
 
 import advent_of_code.utils.geometry
+
+GEAR_NEIGHBOURS = 2
 
 
 # noinspection DuplicatedCode
@@ -64,7 +66,7 @@ class Token:
         self.token = token
         self.is_digit = token.isdigit()
         self.is_symbol = token not in {".", " "} and not self.is_digit
-        self.is_gear = token == "*"
+        self.is_gear = token == "*"  # noqa: S105
 
     def __str__(self):
         return str(self.token)
@@ -180,7 +182,9 @@ class EngineSchematic:
         """
         Parse the text document into an engine schematic.
         """
-        logging.debug(f"Parsing the following text into an engine schematic:\n{text}")
+        logging.debug(
+            f"Parsing the following text into an engine schematic:\n{text}"
+        )
 
         schematic = Map()
         for i, line in enumerate(text.strip().splitlines()):
@@ -189,7 +193,7 @@ class EngineSchematic:
                 logging.debug(f"Token {j}: {token}")
                 schematic[Position(i, j)] = Token(token)
 
-        return cls(schematic, (i, j))  # noqa
+        return cls(schematic, (i, j))
 
     @classmethod
     @functools.cache
@@ -198,7 +202,9 @@ class EngineSchematic:
         Create an engine schematic from a file.
         """
         file = pathlib.Path(__file__).parent / filename
-        logging.info(f"Parsing the following file into an engine schematic: {file}")
+        logging.info(
+            f"Parsing the following file into an engine schematic: {file}"
+        )
 
         return cls.from_text(file.read_text("utf-8"))
 
@@ -226,7 +232,9 @@ class EngineSchematic:
             end_of_line = i % self.width == self.width - 1
 
             if token.is_digit:
-                neighbours = [self.schematic[pos] for pos in position.neighbours]
+                neighbours = [
+                    self.schematic[pos] for pos in position.neighbours
+                ]
 
                 if current_number.start_location is None:
                     logging.debug(f"Found a new part number at {position}.")
@@ -269,10 +277,13 @@ class EngineSchematic:
             neighbours = [
                 part
                 for part in parts
-                if any(part.contains(neighbour) for neighbour in position.neighbours)
+                if any(
+                    part.contains(neighbour)
+                    for neighbour in position.neighbours
+                )
             ]
 
-            if len(neighbours) != 2:
+            if len(neighbours) != GEAR_NEIGHBOURS:
                 continue
 
             yield neighbours[0].number * neighbours[1].number

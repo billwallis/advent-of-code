@@ -45,7 +45,9 @@ class Height:
 
     def __init__(self, height: str):
         if not re.match(r"^[a-zSE]$", height):
-            raise ValueError(f"Characters between `a` and `z` only, found {height}")
+            raise ValueError(
+                f"Characters between `a` and `z` only, found {height}"
+            )
         self.height = height
 
     def __str__(self):
@@ -110,7 +112,10 @@ class Hill:
     """
 
     def __init__(
-        self, map_: dict[Position, Point], starting_point: Point, ending_letter: str
+        self,
+        map_: dict[Position, Point],
+        starting_point: Point,
+        ending_letter: str,
     ):
         """
         Create a hill which is a grid of points, with a start point and end
@@ -130,7 +135,12 @@ class Hill:
         return str(self.map_)
 
     @classmethod
-    def from_text(cls, text: str, starting_letter: str, ending_letter: str) -> Hill:
+    def from_text(
+        cls,
+        text: str,
+        starting_letter: str,
+        ending_letter: str,
+    ) -> Hill:
         """
         Parse a text representation of a map into a Hill.
         """
@@ -143,9 +153,9 @@ class Hill:
                 if z == starting_letter:
                     starting_point = point
 
-        return cls(points, starting_point, ending_letter)  # noqa
+        return cls(points, starting_point, ending_letter)
 
-    def print_visits(self, current_step: int = None) -> None:
+    def print_visits(self, current_step: int | None = None) -> None:
         """
         Print the visitation of the points.
         """
@@ -160,13 +170,19 @@ class Hill:
                 image += "\n"
 
             new_visit = point in self.routes[current_step]
-            character = "\033[92m@\033[0m" if new_visit else characters[point.visited]
+            character = (
+                "\033[92m@\033[0m" if new_visit else characters[point.visited]
+            )
             image += character
 
         print(image)
         time.sleep(1)
 
-    def can_climb(self, current_height: Height, neighbour_height: Height) -> bool:
+    def can_climb(
+        self,
+        current_height: Height,
+        neighbour_height: Height,
+    ) -> bool:
         """
         Whether a neighbouring point can be climbed on.
         """
@@ -190,7 +206,9 @@ class Hill:
                     if neighbour := self.map_.get(neighbour_position):
                         if (
                             self.can_climb(
-                                current_height=self.map_.get(point.position).height,
+                                current_height=self.map_.get(
+                                    point.position
+                                ).height,
                                 neighbour_height=neighbour.height,
                             )
                             and not neighbour.visited
@@ -207,9 +225,17 @@ def solution(input_: str) -> list[Any]:
     """
     Solve the day 12 problem!
     """
-    hill_1 = Hill.from_text(input_.strip(), starting_letter="S", ending_letter="E")
+    hill_1 = Hill.from_text(
+        input_.strip(),
+        starting_letter="S",
+        ending_letter="E",
+    )
     hill_1.find_route(print_image=False)
-    hill_2 = Hill.from_text(input_.strip(), starting_letter="E", ending_letter="a")
+    hill_2 = Hill.from_text(
+        input_.strip(),
+        starting_letter="E",
+        ending_letter="a",
+    )
     hill_2.find_route(print_image=False)
 
     return [

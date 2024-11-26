@@ -8,6 +8,8 @@ from typing import Any
 
 from utils.geometry import Position
 
+MAX_DISTANCE = 2
+
 
 class Knot:
     """
@@ -101,23 +103,25 @@ class Rope:
                 self.move(direction)
 
 
-def resolve_knot_position(upper_knot: Position, lower_knot: Position) -> Position:
+def resolve_knot_position(
+    upper_knot: Position,
+    lower_knot: Position,
+) -> Position:
     """
     Update the lower knot's position to correctly follow the upper knot
     around.
     """
     x, y = upper_knot - lower_knot
     x_, y_ = abs(x), abs(y)
-    if x_ == 2 and y_ == 2:
+    if x_ == MAX_DISTANCE and y_ == MAX_DISTANCE:
         return lower_knot + Position(x // x_, y // y_)
-    elif x_ == 2:
+    if x_ == MAX_DISTANCE:
         return lower_knot + Position(x // x_, y)
-    elif y_ == 2:
+    if y_ == MAX_DISTANCE:
         return lower_knot + Position(x, y // y_)
-    elif x_ > 2 or y_ > 2:
+    if x_ > MAX_DISTANCE or y_ > MAX_DISTANCE:
         raise ValueError(f"Larger distance than expected, found {x, y=}")
-    else:
-        return lower_knot
+    return lower_knot
 
 
 # Math co-ordinates

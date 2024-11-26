@@ -23,6 +23,7 @@ class Nodes:
         for node in self.nodes:
             if node.name == name:
                 return node
+        raise ValueError(f"Node '{name}' not found")
 
     def append(self, item: Node):
         self.nodes.append(item)

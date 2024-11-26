@@ -5,7 +5,7 @@ OOP solution for day 3.
 import warnings
 from typing import Any
 
-import advent_of_code.year_2022.day_03.constants as constants
+from advent_of_code.year_2022.day_03 import constants
 
 
 def get_priority(item: str) -> int:
@@ -38,6 +38,7 @@ class Rucksack:
             for item_2 in self.compartments[1]:
                 if item_1 == item_2:
                     return item_1
+        raise ValueError("No shared item found")
 
 
 class Group:
@@ -46,8 +47,10 @@ class Group:
     """
 
     def __init__(self, rucksacks: list[Rucksack]):
-        if (length := len(rucksacks)) != 3:
-            warnings.warn(f"Expected 3 Rucksacks, found {length}")
+        if (length := len(rucksacks)) != constants.GROUP_RUCKSACK_SIZE:
+            warnings.warn(
+                f"Expected {constants.GROUP_RUCKSACK_SIZE} Rucksacks, found {length}"
+            )
 
         self.rucksacks = rucksacks
 
@@ -61,6 +64,7 @@ class Group:
                     for item_3 in self.rucksacks[2].contents:
                         if item_1 == item_3:
                             return item_1
+        raise ValueError("No shared item found")
 
 
 class Rucksacks:
@@ -70,7 +74,9 @@ class Rucksacks:
 
     def __init__(self, all_contents: str):
         self.all_contents = all_contents
-        self.rucksacks = [Rucksack(contents) for contents in all_contents.split("\n")]
+        self.rucksacks = [
+            Rucksack(contents) for contents in all_contents.split("\n")
+        ]
         self.groups = [
             Group(self.rucksacks[3 * i : 3 * (i + 1)])
             for i in range(len(self.rucksacks) // 3)
@@ -81,7 +87,8 @@ class Rucksacks:
         Sum the priority of the items shared between the compartments.
         """
         return sum(
-            get_priority(rucksack.find_shared_item()) for rucksack in self.rucksacks
+            get_priority(rucksack.find_shared_item())
+            for rucksack in self.rucksacks
         )
 
     def sum_group_item_priorities(self) -> int:

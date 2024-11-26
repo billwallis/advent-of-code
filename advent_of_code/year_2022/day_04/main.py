@@ -45,7 +45,8 @@ class Assignment:
         match other:
             case Assignment():
                 return (
-                    self.lower_id >= other.lower_id and self.upper_id <= other.upper_id
+                    self.lower_id >= other.lower_id
+                    and self.upper_id <= other.upper_id
                 )
             case int():
                 return self.lower_id <= other <= self.upper_id
@@ -120,7 +121,10 @@ class AssignmentPair:
         return self.assignment_1.overlaps(self.assignment_2)
 
     @classmethod
-    def from_comma_delimited_pair(cls, comma_delimited_pair: str) -> AssignmentPair:
+    def from_comma_delimited_pair(
+        cls,
+        comma_delimited_pair: str,
+    ) -> AssignmentPair:
         """
         Create an ``AssignmentPair`` from a comma delimited pair.
 
@@ -169,7 +173,9 @@ class AssignmentPairs:
         Return the number of assignment pairs that overlap in at least 1
         section.
         """
-        return sum(int(assignment_pair.do_ranges_overlap()) for assignment_pair in self)
+        return sum(
+            int(assignment_pair.do_ranges_overlap()) for assignment_pair in self
+        )
 
 
 def solution(input_: str) -> list[Any]:

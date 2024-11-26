@@ -32,14 +32,15 @@ class Point:
         return f"({self.position[0]}, {self.position[1]}, {self.filled_with})"
 
     def __repr__(self):
-        return f"Point(position={self.position}, filled_with={self.filled_with})"
+        return (
+            f"Point(position={self.position}, filled_with={self.filled_with})"
+        )
 
 
 class Cave:
     def __init__(self):
-        self.points: dict[Position, Point] = (
-            {}
-        )  # Point per coordinate within the dimensions
+        # Point per coordinate within the dimensions
+        self.points: dict[Position, Point] = {}
         self.floor_level = 0
         self._add_starting_sand()
 
@@ -82,19 +83,21 @@ class Cave:
                 )
 
     def add_sand(self, position: Position) -> None:
-        self.points[position] = Point(position=position, filled_with=Material.SAND)
+        self.points[position] = Point(
+            position=position,
+            filled_with=Material.SAND,
+        )
 
     def material_at(self, position: Position) -> Material:
         if position[1] >= self.floor_level:
             return Material.ROCK
-        elif point := self.points.get(position):
+        if point := self.points.get(position):
             return point.filled_with
-        else:
-            return Material.AIR
+        return Material.AIR
 
     def draw(self) -> None:
         image = ""
-        air = Point(position=None, filled_with=Material.AIR)  # noqa
+        air = Point(position=None, filled_with=Material.AIR)
         last_position = Position(0, 0)
 
         for position in self.total_area:

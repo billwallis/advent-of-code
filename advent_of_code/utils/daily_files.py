@@ -144,9 +144,8 @@ class FileCreator:
         self.write_to_file(filename="input.data", contents="")
 
 
-def create_files(year: int, day: int = None) -> None:
+def create_files(year: int, day: int) -> None:
     """
     Create the template files for the day.
     """
-    day_ = day or datetime.datetime.now().day
-    FileCreator(day=day_, year=year).create_files()
+    FileCreator(day=day, year=year).create_files()

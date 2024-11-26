@@ -37,7 +37,11 @@ def _number_of_ints_between(_min: float, _max: float, /) -> int:
     return math.ceil(max_) - math.floor(min_) - 1
 
 
-def solve_time_from_distance(time: int, distance: int, acceleration: int) -> int:
+def solve_time_from_distance(
+    time: int,
+    distance: int,
+    acceleration: int,
+) -> int:
     """
     Given a ``time``, ``distance``, and ``acceleration``, return the number
     of integer times that would exceed the ``distance`` travelled in ``time``
@@ -108,7 +112,9 @@ class RaceRecord:
         times, distances = _parse(time_text), _parse(distance_text)
 
         assert len(times) == len(distances)
-        return cls(records=[Record.from_tuple(t_d) for t_d in zip(times, distances)])
+        return cls(
+            records=[Record.from_tuple(t_d) for t_d in zip(times, distances)]
+        )
 
     @property
     def margin_of_error(self) -> int:

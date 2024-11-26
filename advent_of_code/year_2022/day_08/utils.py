@@ -60,10 +60,9 @@ def chained_get(container: dict | list, *args, default: Any = None) -> Any:
     """
     if isinstance(container, list):
         return _chained_get_for_list(container, *args, default=default)
-    elif isinstance(container, dict):
+    if isinstance(container, dict):
         return _chained_get_for_dict(container, *args, default=default)
-    else:
-        raise TypeError(f"Expected type list or dict, found {container}")
+    raise TypeError(f"Expected type list or dict, found {container}")
 
 
 def _chained_get_for_list(multi_list: list, *args, default: Any = None) -> Any:
