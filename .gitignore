@@ -17,7 +17,7 @@ gen
 input.data
 
 # Database files
-*.db
+*.*db
 *.sqlite
 
 # Byte-compiled / optimized / DLL files
