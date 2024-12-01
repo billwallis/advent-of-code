@@ -28,17 +28,12 @@ This project uses:
 
 - [Poetry](https://python-poetry.org/) for package management
 - [pre-commit](https://pre-commit.com/) for linting
-- [MkDocs](https://www.mkdocs.org/) for documentation
 - [arguably](https://treykeown.github.io/arguably/) for the CLI
 
 ```shell
 # Setup
-poetry install --sync --with dev,test,docs
+poetry install --sync --with dev,test
 pre-commit install --with-hooks
-
-# Spin up the docs
-mkdocs build
-mkdocs serve
 
 # Use the CLI
 aoc --help

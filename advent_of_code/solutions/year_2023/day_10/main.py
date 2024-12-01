@@ -1,0 +1,22 @@
+"""
+Day 10: Pipe Maze
+
+https://adventofcode.com/2023/day/10
+"""
+
+from __future__ import annotations
+
+import logging
+from typing import Any
+
+
+def solution(input_: str) -> list[Any]:
+    """
+    Solve the day 10 problem!
+    """
+    logging.basicConfig(level="DEBUG")
+
+    return [
+        0,
+        0,
+    ]
