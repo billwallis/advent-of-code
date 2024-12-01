@@ -42,7 +42,7 @@ class FileCreator:
         main_file = (
             template_env
                 .get_template("main.py")
-                .render(day=self.day, year=self.year, title="")
+                .render(day=self.day, year=self.year, title="[Problem title]")
         )
         # fmt: on
         (self.directory / "main.py").write_text(main_file)

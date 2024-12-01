@@ -6,16 +6,27 @@ import pathlib
 
 import pytest
 
-# import advent_of_code.meta.daily_files as daily_files
-# from advent_of_code.constants import ROOT
+from advent_of_code.meta import daily_files
 
 
-@pytest.fixture
-def root(tmp_path: pathlib.Path) -> pathlib.Path:
-    """
-    Return a temporary directory.
-    """
-    global ROOT  # Dirty hack, but I don't know how to do it better
-    ROOT = tmp_path
+def _read_fixture(name: str) -> str:
+    path = pathlib.Path(__file__).parent / "fixtures" / name
+    return path.read_text("utf-8").strip()
 
-    return ROOT
+
+def test__files_can_be_created(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: pathlib.Path,
+):
+    year, day = 2020, 1
+    monkeypatch.setattr(daily_files, "SOLUTIONS_ROOT", tmp_path)
+    daily_files.create_files(year, day)
+
+    assert (tmp_path / f"year_{year}/day_{day:02d}").exists()
+    assert (tmp_path / f"year_{year}/day_{day:02d}/main.py").exists()
+    assert (tmp_path / f"year_{year}/day_{day:02d}/sample.data").exists()
+
+    main_content = (
+        (tmp_path / f"year_{year}/day_{day:02d}/main.py").read_text().strip()
+    )
+    assert main_content == _read_fixture("mock_main.py")

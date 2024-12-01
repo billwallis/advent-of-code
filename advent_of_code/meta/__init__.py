@@ -1,5 +1,5 @@
 """
-Utilities to use throughout the Advent of Code solutions.
+Utilities to support admin around the Advent of Code solutions.
 """
 
 from advent_of_code.meta.aoc_website import get_input

@@ -38,3 +38,11 @@ pre-commit install --with-hooks
 # Use the CLI
 aoc --help
 ```
+
+Create an `.env` file with the session cookie you get from Advent of Code:
+
+```
+AOC_SESSION_COOKIE="session=..."
+```
+
+You can find the session cookie in your browser's developer tools after logging in to Advent of Code.
