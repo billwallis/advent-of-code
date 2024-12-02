@@ -9,7 +9,10 @@ from __future__ import annotations
 import ast
 import collections.abc
 import math
+import pathlib
 from typing import Any
+
+from advent_of_code.meta import read_input
 
 
 def list_to_packet(value: Any) -> Packet | int | None:
@@ -221,10 +224,13 @@ class Packets:
         )
 
 
-def solution(input_: str) -> list[Any]:
+def solution(use_sample: bool) -> list[int]:
     """
     Solve the day 13 problem!
     """
+    file = "sample.data" if use_sample else "input.data"
+    input_ = read_input(pathlib.Path(__file__).parent / file)
+
     packet_pairs = PacketPairs.from_text(input_.strip())
     divider_packets = [
         Packet.from_text("[[2]]"),

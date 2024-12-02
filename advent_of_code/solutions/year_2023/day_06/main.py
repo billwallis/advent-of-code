@@ -9,7 +9,9 @@ from __future__ import annotations
 import dataclasses
 import logging
 import math
-from typing import Any
+import pathlib
+
+from advent_of_code.meta import read_input
 
 
 def _travel(max_time: int, time: int, acceleration: int) -> int:
@@ -136,11 +138,13 @@ class RaceRecord:
         )
 
 
-def solution(input_: str) -> list[Any]:
+def solution(use_sample: bool) -> list[int]:
     """
     Solve the day 6 problem!
     """
     logging.basicConfig(level="INFO")
+    file = "sample.data" if use_sample else "input.data"
+    input_ = read_input(pathlib.Path(__file__).parent / file)
 
     race_record = RaceRecord.from_text(input_)
     race_record_adj = RaceRecord.from_text(input_.replace(" ", ""))

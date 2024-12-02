@@ -11,6 +11,8 @@ import logging
 import pathlib
 from collections.abc import Callable
 
+from advent_of_code.meta import read_input
+
 Procedure = Callable[[str], int]
 
 DIGITS = {
@@ -140,12 +142,14 @@ def first_and_last_number(text: str) -> int:
     return int("".join([DIGITS[first_number], DIGITS[last_number]]))
 
 
-def solution(input_: str) -> list[int]:
+def solution(use_sample: bool) -> list[int]:
     """
     Solve the day 1 problem!
     """
     # logging.basicConfig(level="DEBUG")
     logging.basicConfig(level="INFO")
+    file = "sample-1.data" if use_sample else "input.data"
+    input_ = read_input(pathlib.Path(__file__).parent / file)
 
     calibration_document = CalibrationDocument.from_text(input_)
 

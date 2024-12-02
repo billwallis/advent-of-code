@@ -29,7 +29,7 @@ class Solution:
     day: int
     year: int
     path: pathlib.Path
-    solution: Callable[[str], list[Any]]
+    solution: Callable[[bool], list[Any]]
 
     def __init__(self, day: int, year: int) -> None:
         """
@@ -46,34 +46,31 @@ class Solution:
         )
         self.solution = getattr(module, "solution")
 
-    def read_input(self) -> str:
+    def solve(self, use_sample: bool) -> list[Any]:
         """
-        Open the input file and return its contents.
+        Solve the day's problem!
         """
-        input_path = self.path / "input.data"
-        if not input_path.exists():
-            text = meta.get_input(self.day, self.year)
-            input_path.write_text(text)
-            return text.strip()
-        return input_path.read_text().strip()
+        return self.solution(use_sample)
 
-    def print_solution(self) -> None:
+    def print_solution(self, use_sample: bool) -> None:
         """
         Print the day's solution!
         """
         print(f"--- Year {self.year} Day {self.day:02d} Solution ---")
-        print(self.solution(self.read_input()), "\n", sep="")
+        print(self.solve(use_sample), "\n", sep="")
 
 
-def print_solutions(print_all: bool, year: int, day: int) -> None:
+def print_solutions(
+    year: int, day: int, print_all: bool, use_sample: bool
+) -> None:
     """
     Print the solutions.
     """
     if print_all:
         for i in range(day):
-            Solution(year=year, day=i + 1).print_solution()
+            Solution(year=year, day=i + 1).print_solution(use_sample)
     else:
-        Solution(year=year, day=day).print_solution()
+        Solution(year=year, day=day).print_solution(use_sample)
 
 
 def _parse_year_and_day(year: int | None, day: int | None) -> tuple[int, int]:
@@ -90,14 +87,16 @@ def __root__(
     year: int | None = None,
     day: int | None = None,
     print_all: bool = False,
+    use_sample: bool = False,
 ) -> None:
     """
     Print the solutions.
     """
     if arguably.is_target():
         print_solutions(
-            print_all,
             *_parse_year_and_day(year, day),
+            print_all,
+            use_sample,
         )
 
 

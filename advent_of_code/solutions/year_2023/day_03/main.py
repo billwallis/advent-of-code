@@ -14,6 +14,7 @@ import logging
 import pathlib
 from collections.abc import Generator
 
+from advent_of_code.meta import read_input
 from advent_of_code.solutions.utils.geometry import Position as _Position
 
 GEAR_NEIGHBOURS = 2
@@ -291,12 +292,14 @@ class EngineSchematic:
             yield neighbours[0].number * neighbours[1].number
 
 
-def solution(input_: str) -> list[int]:
+def solution(use_sample: bool) -> list[int]:
     """
     Solve the day 3 problem!
     """
     # logging.basicConfig(level="DEBUG")
     logging.basicConfig(level="INFO")
+    file = "sample.data" if use_sample else "input.data"
+    input_ = read_input(pathlib.Path(__file__).parent / file)
 
     engine_schematic = EngineSchematic.from_text(input_)
 

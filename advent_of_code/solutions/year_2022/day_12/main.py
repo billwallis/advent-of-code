@@ -6,10 +6,11 @@ https://adventofcode.com/2022/day/12
 
 from __future__ import annotations
 
+import pathlib
 import re
 import time
-from typing import Any
 
+from advent_of_code.meta import read_input
 from advent_of_code.solutions.utils.geometry import Position as _Position
 
 
@@ -223,10 +224,13 @@ class Hill:
             step += 1
 
 
-def solution(input_: str) -> list[Any]:
+def solution(use_sample: bool) -> list[int]:
     """
     Solve the day 12 problem!
     """
+    file = "sample.data" if use_sample else "input.data"
+    input_ = read_input(pathlib.Path(__file__).parent / file)
+
     hill_1 = Hill.from_text(
         input_.strip(),
         starting_letter="S",

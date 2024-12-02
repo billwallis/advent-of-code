@@ -8,8 +8,9 @@ from __future__ import annotations
 
 import enum
 import itertools
-from typing import Any
+import pathlib
 
+from advent_of_code.meta import read_input
 from advent_of_code.solutions.utils.geometry import Area, Position
 
 
@@ -209,10 +210,13 @@ RIGHT = Position(1, 0)
 START = Position(500, 0)
 
 
-def solution(input_: str) -> list[Any]:
+def solution(use_sample: bool) -> list[int]:
     """
     Solve the day 14 problem!
     """
+    file = "sample.data" if use_sample else "input.data"
+    input_ = read_input(pathlib.Path(__file__).parent / file)
+
     sand_cycles_1 = SandCycle.from_text(input_.strip())
     sand_cycles_2 = SandCycle.from_text(input_.strip())
 

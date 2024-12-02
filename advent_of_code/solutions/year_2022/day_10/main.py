@@ -4,7 +4,9 @@ Day 10: Cathode-Ray Tube
 https://adventofcode.com/2022/day/10
 """
 
-from typing import Any
+import pathlib
+
+from advent_of_code.meta import read_input
 
 
 class Scheduler(dict):
@@ -142,10 +144,13 @@ class CPU:
         return drawing
 
 
-def solution(input_: str) -> list[Any]:
+def solution(use_sample: bool) -> list[int]:
     """
     Solve the day 10 problem!
     """
+    file = "sample.data" if use_sample else "input.data"
+    input_ = read_input(pathlib.Path(__file__).parent / file)
+
     cpu = CPU()
     cpu.add_registry(registry="X", starting_value=1)
     cpu.execute(

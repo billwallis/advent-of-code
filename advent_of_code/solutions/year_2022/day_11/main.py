@@ -8,7 +8,9 @@ from __future__ import annotations
 
 import ast
 import math
-from typing import Any
+import pathlib
+
+from advent_of_code.meta import read_input
 
 
 class Item:
@@ -239,10 +241,13 @@ def make_monkeys(input_: str) -> dict[int, Monkey]:
     }
 
 
-def solution(input_: str) -> list[Any]:
+def solution(use_sample: bool) -> list[int]:
     """
     Solve the day 11 problem!
     """
+    file = "sample.data" if use_sample else "input.data"
+    input_ = read_input(pathlib.Path(__file__).parent / file)
+
     rounds_1 = Rounds(make_monkeys(input_), 3)
     rounds_1.run_rounds(20)
     rounds_2 = Rounds(make_monkeys(input_), 1)

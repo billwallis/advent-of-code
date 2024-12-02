@@ -9,6 +9,9 @@ from __future__ import annotations
 import collections
 import functools
 import logging
+import pathlib
+
+from advent_of_code.meta import read_input
 
 
 class Scratchcard:
@@ -121,11 +124,13 @@ class ScratchcardCounter(collections.UserDict):
                 self[scratchcard.card_id + i] += copies
 
 
-def solution(input_: str) -> list[int]:
+def solution(use_sample: bool) -> list[int]:
     """
     Solve the day 4 problem!
     """
     logging.basicConfig(level="INFO")
+    file = "sample.data" if use_sample else "input.data"
+    input_ = read_input(pathlib.Path(__file__).parent / file)
 
     scratchcards = [Scratchcard.from_text(line) for line in input_.splitlines()]
     scratchcard_counter = ScratchcardCounter(scratchcards)

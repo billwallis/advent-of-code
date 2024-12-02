@@ -6,8 +6,9 @@ https://adventofcode.com/2022/day/9
 
 from __future__ import annotations
 
-from typing import Any
+import pathlib
 
+from advent_of_code.meta import read_input
 from advent_of_code.solutions.utils.geometry import Position
 
 MAX_DISTANCE = 2
@@ -139,10 +140,13 @@ DIRECTIONS = {
 }
 
 
-def solution(input_: str) -> list[Any]:
+def solution(use_sample: bool) -> list[int]:
     """
     Solve the day 9 problem!
     """
+    file = "sample.data" if use_sample else "input.data"
+    input_ = read_input(pathlib.Path(__file__).parent / file)
+
     rope_1 = Rope(starting_position=Position(0, 0), knots=2)
     rope_1.follow_instructions(instructions=input_.strip().split("\n"))
     rope_2 = Rope(starting_position=Position(0, 0), knots=10)

@@ -8,7 +8,9 @@ from __future__ import annotations
 
 import dataclasses
 import logging
-from typing import Any
+import pathlib
+
+from advent_of_code.meta import read_input
 
 ALMANAC_MAPS = [
     "seed-to-soil",
@@ -221,12 +223,14 @@ def parse_input(text: str) -> tuple[Seeds, Almanac]:
     return seeds, almanac
 
 
-def solution(input_: str) -> list[Any]:
+def solution(use_sample: bool) -> list[int]:
     """
     Solve the day 5 problem!
     """
-    logging.basicConfig(level="DEBUG")
     return ["exiting early"]
+    logging.basicConfig(level="DEBUG")
+    file = "sample.data" if use_sample else "input.data"
+    input_ = read_input(pathlib.Path(__file__).parent / file)
 
     seeds, almanac = parse_input(input_)
 

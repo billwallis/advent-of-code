@@ -7,7 +7,9 @@ https://adventofcode.com/2022/day/2
 from __future__ import annotations
 
 import enum
-from typing import Any
+import pathlib
+
+from advent_of_code.meta import read_input
 
 PART_1 = 1
 PART_2 = 2
@@ -230,10 +232,13 @@ class Strategy:
         return sum(rnd.score for rnd in self.rounds)
 
 
-def solution(input_: str) -> list[Any]:
+def solution(use_sample: bool) -> list[int]:
     """
     Solve the day 2 problem!
     """
+    file = "sample.data" if use_sample else "input.data"
+    input_ = read_input(pathlib.Path(__file__).parent / file)
+
     strategy_1 = Strategy(input_.strip(), 1)
     strategy_2 = Strategy(input_.strip(), 2)
 

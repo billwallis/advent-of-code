@@ -14,6 +14,8 @@ import pathlib
 import textwrap
 from typing import Literal
 
+from advent_of_code.meta import read_input
+
 BagConfiguration = dict[Literal["red", "green", "blue"], int]
 
 
@@ -168,12 +170,14 @@ class Games(collections.UserDict):
         return sum(cube.power() for cube in self.values())
 
 
-def solution(input_: str) -> list[int]:
+def solution(use_sample: bool) -> list[int]:
     """
     Solve the day 2 problem!
     """
     # logging.basicConfig(level="DEBUG")
     logging.basicConfig(level="INFO")
+    file = "sample.data" if use_sample else "input.data"
+    input_ = read_input(pathlib.Path(__file__).parent / file)
 
     bag_configuration: BagConfiguration = {"red": 12, "green": 13, "blue": 14}
     games = Games.from_text(input_)

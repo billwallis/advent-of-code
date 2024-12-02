@@ -6,7 +6,9 @@ https://adventofcode.com/2022/day/5
 
 from __future__ import annotations
 
-from typing import Any
+import pathlib
+
+from advent_of_code.meta import read_input
 
 
 class Stack(list):
@@ -203,11 +205,14 @@ class StackHandler:
         return "".join(stack[-1] for stack in self.stacks.values())
 
 
-def solution(input_: str) -> list[Any]:
+def solution(use_sample: bool) -> list[int]:
     """
     Solve the day 5 problem!
     """
     return ["exited early"]
+
+    file = "sample.data" if use_sample else "input.data"
+    input_ = read_input(pathlib.Path(__file__).parent / file)
 
     _stacks, _procedure = input_.split("\n\n")
 

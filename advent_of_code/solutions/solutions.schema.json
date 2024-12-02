@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "advent-of-code-solutions",
+  "description": "Solutions for Advent of Code.",
+
+  "type": "object",
+  "required": ["solutions"],
+  "additionalProperties": false,
+  "properties": {
+    "solutions": {
+      "type": "object",
+      "additionalProperties": false,
+      "patternProperties": {
+        "^year-\\d{4}$": {
+          "$ref": "#/definitions/year"
+        }
+      }
+    }
+  },
+  "definitions": {
+    "year": {
+      "type": "object",
+      "additionalProperties": false,
+      "patternProperties": {
+        "^day-\\d{2}$": {
+          "$ref": "#/definitions/day"
+        }
+      }
+    },
+    "day": {
+      "type": "object",
+      "required": ["sample", "actual"],
+      "additionalProperties": false,
+      "properties": {
+        "sample": {
+          "$ref": "#/definitions/parts"
+        },
+        "actual": {
+          "$ref": "#/definitions/parts"
+        }
+      }
+    },
+    "parts": {
+      "type": "object",
+      "required": ["part-1", "part-2"],
+      "additionalProperties": false,
+      "properties": {
+        "part-1": {
+          "type": ["number", "string", "null"],
+          "description": "The answer to part 1 of the day's puzzle."
+        },
+        "part-2": {
+          "type": ["number", "string", "null"],
+          "description": "The answer to part 2 of the day's puzzle."
+        }
+      }
+    }
+  }
+}

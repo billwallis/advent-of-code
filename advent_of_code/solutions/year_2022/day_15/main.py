@@ -6,8 +6,9 @@ https://adventofcode.com/2022/day/15
 
 from __future__ import annotations
 
-from typing import Any
+import pathlib
 
+from advent_of_code.meta import read_input
 from advent_of_code.solutions.utils.geometry import Position, manhattan_distance
 
 
@@ -135,10 +136,13 @@ LEFT = Position(-1, 0)
 RIGHT = Position(1, 0)
 
 
-def solution(input_: str) -> list[Any]:
+def solution(use_sample: bool) -> list[int]:
     """
     Solve the day 15 problem!
     """
+    file = "sample.data" if use_sample else "input.data"
+    input_ = read_input(pathlib.Path(__file__).parent / file)
+
     sensors = Sensors.from_text(input_.strip())
     # sensors.set_neighbours()  # Takes way too long!
 

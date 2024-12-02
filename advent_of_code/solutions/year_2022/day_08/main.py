@@ -7,8 +7,9 @@ https://adventofcode.com/2022/day/8
 from __future__ import annotations
 
 import itertools
-from typing import Any
+import pathlib
 
+from advent_of_code.meta import read_input
 from advent_of_code.solutions.utils.geometry import Position
 
 from . import utils
@@ -214,10 +215,13 @@ class Forest:
         )
 
 
-def solution(input_: str) -> list[Any]:
+def solution(use_sample: bool) -> list[int]:
     """
     Solve the day 8 problem!
     """
+    file = "sample.data" if use_sample else "input.data"
+    input_ = read_input(pathlib.Path(__file__).parent / file)
+
     forest = Forest(input_.strip())
     forest.set_visibility()
 

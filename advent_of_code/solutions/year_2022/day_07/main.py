@@ -7,8 +7,11 @@ https://adventofcode.com/2022/day/7
 from __future__ import annotations
 
 import json
+import pathlib
 from collections.abc import Generator
 from typing import Any
+
+from advent_of_code.meta import read_input
 
 
 def _is_command(line: str) -> bool:
@@ -193,10 +196,13 @@ class FileSystem:
         )
 
 
-def solution(input_: str) -> list[Any]:
+def solution(use_sample: bool) -> list[int]:
     """
     Solve the day 7 problem!
     """
+    file = "sample.data" if use_sample else "input.data"
+    input_ = read_input(pathlib.Path(__file__).parent / file)
+
     file_system = FileSystem.from_output_string(
         text=input_.strip(),
         total_disk_space=70_000_000,

@@ -8,8 +8,9 @@ from __future__ import annotations
 
 import abc
 import copy
-from typing import Any
+import pathlib
 
+from advent_of_code.meta import read_input
 from advent_of_code.solutions.utils.geometry import Position
 
 
@@ -308,10 +309,13 @@ ROCK_ORDER: dict[int, type[Rock]] = {
 }
 
 
-def solution(input_: str) -> list[Any]:
+def solution(use_sample: bool) -> list[int]:
     """
     Solve the day 17 problem!
     """
+    file = "sample.data" if use_sample else "input.data"
+    input_ = read_input(pathlib.Path(__file__).parent / file)
+
     chamber = Chamber(width=7, jet_text=input_.strip())
     chamber.run(rock_limit=2022, draw=False)
     # chamber.draw()

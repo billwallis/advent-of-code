@@ -7,8 +7,10 @@ https://adventofcode.com/2022/day/16
 from __future__ import annotations
 
 import copy
+import pathlib
 import re
-from typing import Any
+
+from advent_of_code.meta import read_input
 
 
 class Valve:
@@ -161,10 +163,13 @@ class Cycles:
             self.current_time += 1
 
 
-def solution(input_: str) -> list[Any]:
+def solution(use_sample: bool) -> list[int]:
     """
     Solve the day 16 problem!
     """
+    file = "sample.data" if use_sample else "input.data"
+    input_ = read_input(pathlib.Path(__file__).parent / file)
+
     cycles = Cycles(input_=input_.strip(), total_time=30)
     cycles.run()
 

@@ -6,7 +6,9 @@ https://adventofcode.com/2022/day/1
 
 from __future__ import annotations
 
-from typing import Any
+import pathlib
+
+from advent_of_code.meta import read_input
 
 ELF_LIMIT = 3
 
@@ -96,10 +98,13 @@ class Elf:
         return sum(int(calories) for calories in self.calorie_list.split("\n"))
 
 
-def solution(input_: str) -> list[Any]:
+def solution(use_sample: bool) -> list[int]:
     """
     Solve the day 1 problem!
     """
+    file = "sample.data" if use_sample else "input.data"
+    input_ = read_input(pathlib.Path(__file__).parent / file)
+
     elves = Elves()
     [elves.add_elf(elf_list) for elf_list in input_.strip().split("\n\n")]
 

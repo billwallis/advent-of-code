@@ -4,8 +4,10 @@ Day 3: Rucksack Reorganization!
 https://adventofcode.com/2022/day/3
 """
 
+import pathlib
 import warnings
-from typing import Any
+
+from advent_of_code.meta import read_input
 
 GROUP_RUCKSACK_SIZE = 3
 PRIORITY = {
@@ -154,10 +156,13 @@ class Rucksacks:
         return sum(get_priority(group.find_badge()) for group in self.groups)
 
 
-def solution(input_: str) -> list[Any]:
+def solution(use_sample: bool) -> list[int]:
     """
     Solve the day 3 problem!
     """
+    file = "sample.data" if use_sample else "input.data"
+    input_ = read_input(pathlib.Path(__file__).parent / file)
+
     rucksacks = Rucksacks(input_.strip())
 
     return [

@@ -1,230 +1,537 @@
+# yaml-language-server: $schema=solutions.schema.json
 ---
 solutions:
   year-2022:
     day-01:
-      part-1: 72240
-      part-2: 210957
+      sample:
+        part-1: 24000
+        part-2: 45000
+      actual:
+        part-1: 72240
+        part-2: 210957
     day-02:
-      part-1: 13052
-      part-2: 13693
+      sample:
+        part-1: 15
+        part-2: 12
+      actual:
+        part-1: 13052
+        part-2: 13693
     day-03:
-      part-1: 8053
-      part-2: 2425
+      sample:
+        part-1: 157
+        part-2: 70
+      actual:
+        part-1: 8053
+        part-2: 2425
     day-04:
-      part-1: 413
-      part-2: 806
+      sample:
+        part-1: 2
+        part-2: 4
+      actual:
+        part-1: 413
+        part-2: 806
     day-05:
-      part-1: RFFFWBPNS
-      part-2: CQQBBJFCS
+      sample:
+        part-1: CMZ
+        part-2: MCD
+      actual:
+        part-1: RFFFWBPNS
+        part-2: CQQBBJFCS
     day-06:
-      part-1: 1578
-      part-2: 2178
+      sample:
+        part-1: 7
+        part-2: 19
+      actual:
+        part-1: 1578
+        part-2: 2178
     day-07:
-      part-1: 2061777
-      part-2: 4473403
+      sample:
+        part-1: 95437
+        part-2: 24933642
+      actual:
+        part-1: 2061777
+        part-2: 4473403
     day-08:
-      part-1: 1825
-      part-2: 235200
+      sample:
+        part-1: 21
+        part-2: 8
+      actual:
+        part-1: 1825
+        part-2: 235200
     day-09:
-      part-1: 6503
-      part-2: 2724
+      sample:
+        part-1: 13
+        part-2: 1
+      actual:
+        part-1: 6503
+        part-2: 2724
     day-10:
-      part-1: 12840
-      part-2: ZKJFBJFZ
+      sample:
+        part-1: 13140
+        part-2: |-
+          ##..##..##..##..##..##..##..##..##..##..
+          ###...###...###...###...###...###...###.
+          ####....####....####....####....####....
+          #####.....#####.....#####.....#####.....
+          ######......######......######......###.
+          #######.......#######.......#######.....
+      actual:
+        part-1: 12840
+        part-2: ZKJFBJFZ
     day-11:
-      part-1: 111210
-      part-2: 15447387620
+      sample:
+        part-1: 10605
+        part-2: 2713310158
+      actual:
+        part-1: 111210
+        part-2: 15447387620
     day-12:
-      part-1: 380
-      part-2: 375
+      sample:
+        part-1: 31
+        part-2: 29
+      actual:
+        part-1: 380
+        part-2: 375
     day-13:
-      part-1: 5208
-      part-2:
+      sample:
+        part-1: 13
+        part-2: 140
+      actual:
+        part-1: 5208
+        part-2:
     day-14:
-      part-1: 1072
-      part-2: 24659
+      sample:
+        part-1: 24
+        part-2: 93
+      actual:
+        part-1: 1072
+        part-2: 24659
     day-15:
-      part-1: 4919281
-      part-2:
+      sample:
+        part-1: 0 # 26
+        part-2: 0 # 56000011
+      actual:
+        part-1: 4919281
+        part-2:
     day-16:
-      part-1: 1767
-      part-2:
+      sample:
+        part-1: 1651
+        part-2: 0 # 1707
+      actual:
+        part-1: 1767
+        part-2:
     day-17:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 # 3068
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-18:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 # 64
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-19:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 # 33
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-20:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 # 3
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-21:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 # 152
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-22:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 # 6032
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-23:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 # 110
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-24:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 # 18
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-25:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 # 2=-1=0
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
   year-2023:
     day-01:
-      part-1: 55130
-      part-2: 54985
+      sample:
+        part-1: 209
+        part-2: 281
+      actual:
+        part-1: 55130
+        part-2: 54985
     day-02:
-      part-1: 2176
-      part-2: 63700
+      sample:
+        part-1: 8
+        part-2: 2286
+      actual:
+        part-1: 2176
+        part-2: 63700
     day-03:
-      part-1: 519444
-      part-2: 74528807
+      sample:
+        part-1: 4361
+        part-2: 467835
+      actual:
+        part-1: 519444
+        part-2: 74528807
     day-04:
-      part-1: 23941
-      part-2: 5571760
+      sample:
+        part-1: 13
+        part-2: 30
+      actual:
+        part-1: 23941
+        part-2: 5571760
     day-05:
-      part-1: 174137457
-      part-2:
+      sample:
+        part-1: 0 #
+        part-2: 0 #
+      actual:
+        part-1: 174137457
+        part-2:
     day-06:
-      part-1: 1159152
-      part-2: 41513103
+      sample:
+        part-1: 288
+        part-2: 71503
+      actual:
+        part-1: 1159152
+        part-2: 41513103
     day-07:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 # 6440
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-08:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 # 6
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-09:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 # 114
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-10:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 # 8
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-11:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 # 374
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-12:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 # 21
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-13:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 # 405
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-14:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 # 136
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-15:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 # 1320
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-16:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 # 46
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-17:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 # 102
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-18:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 # 62
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-19:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 # 19114
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-20:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 # 32000000 (or 11687500)
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-21:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 # 16
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-22:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 # 5
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-23:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 # 94
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-24:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 # 2
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-25:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 # 54
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
   year-2024:
     day-01:
-      part-1: 2196996
-      part-2: 23655822
+      sample:
+        part-1: 0 # 11
+        part-2: 0 # 31
+      actual:
+        part-1: 2196996
+        part-2: 23655822
     day-02:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 # 2
+        part-2: 0 # 4
+      actual:
+        part-1: 624
+        part-2: 658
     day-03:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 #
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-04:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 #
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-05:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 #
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-06:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 #
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-07:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 #
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-08:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 #
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-09:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 #
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-10:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 #
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-11:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 #
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-12:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 #
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-13:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 #
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-14:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 #
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-15:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 #
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-16:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 #
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-17:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 #
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-18:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 #
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-19:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 #
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-20:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 #
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-21:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 #
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-22:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 #
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-23:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 #
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-24:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 #
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:
     day-25:
-      part-1:
-      part-2:
+      sample:
+        part-1: 0 #
+        part-2: 0 #
+      actual:
+        part-1:
+        part-2:

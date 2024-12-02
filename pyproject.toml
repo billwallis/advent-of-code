@@ -29,6 +29,7 @@ test.optional = true
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^3"
+pyyaml = "^6"
 
 [tool.poetry.group.test.dependencies]
 pytest = "^7.0"
@@ -62,6 +63,7 @@ dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
     # TODO: Enable these rules
     "S101",     #  Use of `assert` detected
     "F401",     #  `...` imported but unused; consider removing, adding to `__all__`, or using a redundant alias
+    "F841",     #  Local variable `...` is assigned to but never used
     "RUF012",   #  Mutable class attributes should be annotated with `typing.ClassVar`
     "RUF015",   #  Prefer `next(...)` over single element slice
     "PLW0603",  #  Using the global statement to update `...` is discouraged

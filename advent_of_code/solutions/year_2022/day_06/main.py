@@ -4,7 +4,9 @@ Day 6: Tuning Trouble
 https://adventofcode.com/2022/day/6
 """
 
-from typing import Any
+import pathlib
+
+from advent_of_code.meta import read_input
 
 
 class DatastreamBuffer:
@@ -41,10 +43,13 @@ class DatastreamBuffer:
         raise ValueError("No distinct sequence found")
 
 
-def solution(input_: str) -> list[Any]:
+def solution(use_sample: bool) -> list[int]:
     """
     Solve the day 6 problem!
     """
+    file = "sample.data" if use_sample else "input.data"
+    input_ = read_input(pathlib.Path(__file__).parent / file)
+
     datastream_buffer = DatastreamBuffer(
         input_.strip().split("\n")[0]
     )  # Just to include the many sample inputs
