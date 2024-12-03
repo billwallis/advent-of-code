@@ -2,12 +2,7 @@ with
 
 input(data) as (
     select *
-    from read_csv(
-        -- 'advent_of_code/solutions/year_2024/day_01/sample.data',
-        'advent_of_code/solutions/year_2024/day_01/input.data',
-        -- 'https://adventofcode.com/2024/day/1/input',
-         header=false
-    )
+    from read_csv('{{ file }}', header=false)
 ),
 
 split_input as (

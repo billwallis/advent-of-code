@@ -2,13 +2,7 @@ with
 
 input(data) as (
     select string_agg(column0)
-    from read_csv(
-        -- 'advent_of_code/solutions/year_2024/day_03/sample-2.data',
-        'advent_of_code/solutions/year_2024/day_03/input.data',
-        -- 'https://adventofcode.com/2024/day/3/input',
-         header=false,
-         sep=''
-    )
+    from read_csv('{{ file }}', header=false, sep='')
 ),
 
 expressions as (

@@ -362,15 +362,15 @@ solutions:
   year-2024:
     day-01:
       sample:
-        part-1: 0 # 11
-        part-2: 0 # 31
+        part-1: 11
+        part-2: 31
       actual:
         part-1: 2196996
         part-2: 23655822
     day-02:
       sample:
-        part-1: 0 # 2
-        part-2: 0 # 4
+        part-1: 2
+        part-2: 4
       actual:
         part-1: 624
         part-2: 658
