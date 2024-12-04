@@ -383,11 +383,11 @@ solutions:
         part-2: 75920122
     day-04:
       sample:
-        part-1: 0 #
-        part-2: 0 #
+        part-1: 18
+        part-2: 9
       actual:
-        part-1:
-        part-2:
+        part-1: 2583
+        part-2: 1978
     day-05:
       sample:
         part-1: 0 #
