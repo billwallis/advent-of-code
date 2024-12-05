@@ -390,11 +390,11 @@ solutions:
         part-2: 1978
     day-05:
       sample:
-        part-1: 0 #
-        part-2: 0 #
+        part-1: 143
+        part-2: 123
       actual:
-        part-1:
-        part-2:
+        part-1: 5208
+        part-2: 6732
     day-06:
       sample:
         part-1: 0 #
