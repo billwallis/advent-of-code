@@ -397,10 +397,10 @@ solutions:
         part-2: 6732
     day-06:
       sample:
-        part-1: 0 #
-        part-2: 0 #
+        part-1: 41
+        part-2: 0 # 6
       actual:
-        part-1:
+        part-1: 4374
         part-2:
     day-07:
       sample:
