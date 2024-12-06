@@ -60,7 +60,8 @@ searches as (
         direction,
         exists(
             from grid as i  /* inner (i for brevity) */
-            where (o.row_id, o.col_id, o.letter_to_match) = (i.row_id + o.row_i, i.col_id + o.col_i, i.letter)
+            where (o.row_id,           o.col_id,           o.letter_to_match)
+                = (i.row_id + o.row_i, i.col_id + o.col_i, i.letter)
         ) as letter_found,
     from (from grid cross join search_directions) as o  /* outer (o for brevity) */
 )

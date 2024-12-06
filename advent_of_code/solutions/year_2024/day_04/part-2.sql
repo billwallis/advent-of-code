@@ -63,7 +63,8 @@ searches as (
         direction,
         exists(
             from grid as i  /* inner (i for brevity) */
-            where (o.row_id, o.col_id, o.letter_to_match) = (i.row_id + o.row_i, i.col_id + o.col_i, i.letter)
+            where (o.row_id,           o.col_id,           o.letter_to_match)
+                = (i.row_id + o.row_i, i.col_id + o.col_i, i.letter)
         ) as letter_found,
     from (from grid cross join search_directions) as o  /* outer (o for brevity) */
 )
@@ -74,7 +75,6 @@ from (
     group by row_id, col_id, direction
     having 3 = count_if(letter_found)
     qualify 2 = count(*) over (partition by row_id, col_id)
-    order by row_id, col_id, direction
 )
 select count(distinct (row_id, col_id))
 ;

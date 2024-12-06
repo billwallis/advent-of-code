@@ -8,7 +8,6 @@ input(data) as (
 expressions as (
     from input
     select
-        data,
         unnest(regexp_extract_all(
             data,
             'mul\(\d{1,3},\d{1,3}\)'

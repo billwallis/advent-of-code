@@ -1,6 +1,6 @@
 with
 
-input(data) as (
+input(data, row_id) as (
     select *, row_number() over() as row_id
     from read_csv('{{ file }}', header=false)
 ),
@@ -24,21 +24,18 @@ print_queue as (
 ),
 
 pages_after as (
+    from (
+              select page_before from page_order
+        union select page_after  from page_order
+    ) as pages(page)
+        natural full join (
+            select page_before, list(page_after)
+            from page_order
+            group by page_before
+        ) as after(page, pages_after)
     select
         page,
         coalesce(after.pages_after, []) as pages_after,
-    from (
-              select page_before from page_order
-        union select page_after from page_order
-    ) as pages(page)
-        full join (
-            select
-                page_before as page,
-                list(page_after) as pages_after
-            from page_order
-            group by page_before
-        ) as after
-            using (page)
 ),
 
 ordered_print_queue as (
@@ -63,7 +60,7 @@ ordered_print_queue as (
     group by print_id
 )
 
-select sum(original_pages[((len(original_pages) + 1) / 2)::int])
+select sum(ordered_pages[((len(ordered_pages) + 1) / 2)::int])
 from ordered_print_queue
 where good_order_flag
 ;
