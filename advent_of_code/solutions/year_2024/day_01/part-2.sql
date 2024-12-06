@@ -21,8 +21,10 @@ right_list_frequency as (
     group by right_list
 )
 
-
-select sum(split_input.left_list * coalesce(right_list_frequency.right_list_count, 0)) as solution
+select sum(
+    split_input.left_list
+    * coalesce(right_list_frequency.right_list_count, 0)
+)
 from split_input
     left join right_list_frequency
         on split_input.left_list = right_list_frequency.right_list

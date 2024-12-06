@@ -6,10 +6,6 @@ input(data) as (
 ),
 
 reports as (
-    select
-        report_id,
-        unnest(report)::int as level,
-        generate_subscripts(report, 1) AS index,
     from (
         select
             data,
@@ -17,6 +13,10 @@ reports as (
             split(data, ' ') as report,
         from input
     )
+    select
+        report_id,
+        unnest(report)::int as level,
+        generate_subscripts(report, 1) AS index,
 ),
 
 /* Brute force through the indexes */

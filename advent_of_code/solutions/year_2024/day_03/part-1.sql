@@ -6,13 +6,13 @@ input(data) as (
 ),
 
 expressions as (
+    from input
     select
         data,
         unnest(regexp_extract_all(
             data,
             'mul\(\d{1,3},\d{1,3}\)'
         )) as expression
-    from input
 )
 
 from expressions
@@ -27,5 +27,5 @@ select sum(1
         'mul\((\d{1,3}),(\d{1,3})\)',
         '\2'
     )::int
-) as solution
+)
 ;

@@ -15,7 +15,7 @@ ordered_input as (
     from input
 )
 
-select sum(abs(left_list.left_list - right_list.right_list)) as solution
+select sum(abs(left_list.left_list - right_list.right_list))
 from ordered_input as left_list
     inner join ordered_input as right_list
         on left_list.left_rn = right_list.right_rn

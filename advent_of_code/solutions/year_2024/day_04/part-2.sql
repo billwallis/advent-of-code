@@ -68,7 +68,6 @@ searches as (
     from (from grid cross join search_directions) as o  /* outer (o for brevity) */
 )
 
-select count(distinct (row_id, col_id))
 from (
     select row_id, col_id, direction
     from searches
@@ -77,4 +76,5 @@ from (
     qualify 2 = count(*) over (partition by row_id, col_id)
     order by row_id, col_id, direction
 )
+select count(distinct (row_id, col_id))
 ;

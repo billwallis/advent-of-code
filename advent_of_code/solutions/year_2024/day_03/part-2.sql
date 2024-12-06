@@ -27,5 +27,5 @@ select sum(1
         'mul\((\d{1,3}),(\d{1,3})\)',
         '\2'
     )::int
-) as solution
+)
 ;

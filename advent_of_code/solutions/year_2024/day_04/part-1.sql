@@ -65,11 +65,11 @@ searches as (
     from (from grid cross join search_directions) as o  /* outer (o for brevity) */
 )
 
-select count(*)
 from (
     select row_id, col_id, direction
     from searches
     group by row_id, col_id, direction
     having 4 = count_if(letter_found)
 )
+select count(*)
 ;
