@@ -411,11 +411,11 @@ solutions:
         part-2: 661823605105500
     day-08:
       sample:
-        part-1: 0 #
-        part-2: 0 #
+        part-1: 14
+        part-2: 34
       actual:
-        part-1:
-        part-2:
+        part-1: 381
+        part-2: 1184
     day-09:
       sample:
         part-1: 0 #
