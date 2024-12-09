@@ -418,10 +418,10 @@ solutions:
         part-2: 1184
     day-09:
       sample:
-        part-1: 0 #
-        part-2: 0 #
+        part-1: 1928
+        part-2: 2858
       actual:
-        part-1:
+        part-1: 6356833654075
         part-2:
     day-10:
       sample:
