@@ -10,64 +10,50 @@ input(data) as (
     y increments down (v)
 */
 grid as (
+    from input
     select
-        generate_subscripts(split(data, ''), 1) AS x,
+        generate_subscripts(split(data, ''), 1) as x,
         row_number() over () as y,
         unnest(split(data, '')) as cell,
-    from input
 ),
 
-directions(direction, rotate_90) as (
+directions(symbol, direction, rotate_90) as (
     values
-        ([ 0, -1], [ 1,  0]),
-        ([ 1,  0], [ 0,  1]),
-        ([ 0,  1], [-1,  0]),
-        ([-1,  0], [ 0, -1]),
+        ('^', [ 0, -1], [ 1,  0]),
+        ('>', [ 1,  0], [ 0,  1]),
+        ('v', [ 0,  1], [-1,  0]),
+        ('<', [-1,  0], [ 0, -1]),
 ),
 
 /* While the guard is in the map, continue their journey */
-journey as (
+journey(direction, x, y) as (
         select
-            case cell
-                when '^' then [0, -1]
-                when '>' then [1, 0]
-                when 'v' then [0, 1]
-                when '<' then [-1, 0]
-            end as direction,
-            x,
-            y,
+            directions.direction,
+            grid.x,
+            grid.y,
         from grid
-        where cell in ('^', '>', 'v', '<')
+            inner join directions
+                on grid.cell = directions.symbol
     union all
         from (
-            from journey
             select
-                *,
-                if(
-                    /* Is the next cell an obstruction (#) */
-                    exists(
-                        select *
-                        from grid as front
-                        where 1=1
-                            and (journey.x + journey.direction[1]) = front.x
-                            and (journey.y + journey.direction[2]) = front.y
-                            and front.cell = '#'
-                    ),
-                    (
-                        select rotate_90
-                        from directions
-                        where directions.direction = journey.direction
-                    ),
-                    direction
-                ) as direction_
+                journey.*,
+                directions.rotate_90,
+                if(front.cell = '#', 'turn', 'move') as action,
+            from journey
+                inner join directions
+                    using (direction)
+                inner join grid as front
+                    on  journey.x + journey.direction[1] = front.x
+                    and journey.y + journey.direction[2] = front.y
         )
         select
-            direction_,
-            x + direction_[1] as x_,
-            y + direction_[2] as y_,
+            if(action = 'turn', rotate_90, direction),
+            if(action = 'turn', x,         x + direction[1]) as x_,
+            if(action = 'turn', y,         y + direction[2]) as y_,
         where (x_, y_) in (select (x, y) from grid)
 )
 
-from journey
 select count(distinct (x, y))
+from journey
 ;
