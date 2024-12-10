@@ -425,11 +425,11 @@ solutions:
         part-2:
     day-10:
       sample:
-        part-1: 0 #
-        part-2: 0 #
+        part-1: 36
+        part-2: 81
       actual:
-        part-1:
-        part-2:
+        part-1: 786
+        part-2: 1722
     day-11:
       sample:
         part-1: 0 #
