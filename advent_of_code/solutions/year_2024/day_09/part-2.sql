@@ -7,7 +7,7 @@ with recursive
 
 input(data) as (
     select *
-    from read_csv('{{ file }}', header=false, types=['varchar'])
+    from read_csv('advent_of_code\solutions\year_2024\day_09\sample.data', header=false, types=['varchar'])
 ),
 
 blocks as (
