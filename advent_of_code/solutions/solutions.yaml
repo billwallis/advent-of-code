@@ -446,11 +446,11 @@ solutions:
         part-2:
     day-13:
       sample:
-        part-1: 0 #
-        part-2: 0 #
+        part-1: 480
+        part-2: 36954
       actual:
-        part-1:
-        part-2:
+        part-1: 875318608908
+        part-2: 79352015273424
     day-14:
       sample:
         part-1: 0 #
