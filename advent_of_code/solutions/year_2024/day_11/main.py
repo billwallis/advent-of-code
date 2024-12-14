@@ -26,7 +26,7 @@ def solution(use_sample: bool) -> list[int]:
     Solve the day 11 problem!
     """
     logging.basicConfig(level="DEBUG")
-    file = HERE / ("sample-2.data" if use_sample else "input.data")
+    file = HERE / ("sample.data" if use_sample else "input.data")
     read_input(file)
 
     part_1 = _read("part-1.sql").replace("{{ file }}", str(file.absolute()))

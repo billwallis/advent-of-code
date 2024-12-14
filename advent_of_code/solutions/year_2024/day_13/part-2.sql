@@ -2,7 +2,7 @@ with recursive
 
 input(data) as (
     select *
-    from read_csv('advent_of_code/solutions/year_2024/day_13/input.data', header=false, sep='')
+    from read_csv('{{ file }}', header=false, sep='')
 ),
 
 machines as (
