@@ -447,9 +447,9 @@ solutions:
     day-13:
       sample:
         part-1: 480
-        part-2: 36954
+        part-2: 875318608908
       actual:
-        part-1: 875318608908
+        part-1: 36954
         part-2: 79352015273424
     day-14:
       sample:

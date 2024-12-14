@@ -33,8 +33,8 @@ movements as (
         } as pos_,
         /* Re-adjust to be >= 0 */
         {
-            'x': if(pos_['x'] < 0, pos_['x'] + width,  pos_['x'] % width),
-            'y': if(pos_['y'] < 0, pos_['y'] + height, pos_['y'] % height),
+            'x': if(pos_['x'] < 0, pos_['x'] + width,  pos_['x']),
+            'y': if(pos_['y'] < 0, pos_['y'] + height, pos_['y']),
         } as pos,
 
         floor(width / 2) as x_mid,

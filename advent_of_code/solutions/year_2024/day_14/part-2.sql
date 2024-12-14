@@ -1,4 +1,3 @@
-/* Part 2 */
 with
 
 input(data, is_sample) as (
@@ -32,39 +31,41 @@ robots as (
 )
 
 from generate_series(77, 77 + (100 * 101), 101) as seconds(n)
-select (
-    with movements as (
-        from robots, dimensions
-        select
-            dimensions.width,
-            dimensions.height,
-            (robots.position['x'] + (seconds.n * robots.velocity['x'])) % dimensions.width as pos_x,
-            (robots.position['y'] + (seconds.n * robots.velocity['y'])) % dimensions.height as pos_y,
-    ),
+select
+    n,
+    (
+        with movements as (
+            from robots, dimensions
+            select
+                dimensions.width,
+                dimensions.height,
+                (robots.position['x'] + (seconds.n * robots.velocity['x'])) % dimensions.width as pos_x,
+                (robots.position['y'] + (seconds.n * robots.velocity['y'])) % dimensions.height as pos_y,
+        ),
 
-    final_positions as (
-        select
-            if(pos_x < 0, pos_x + width,  pos_x % width) as x,
-            if(pos_y < 0, pos_y + height,  pos_y % height) as y,
-            least(count(*), 9) as robot_count,
-        from movements
-        group by all
-    )
+        final_positions as (
+            select
+                if(pos_x < 0, pos_x + width,  pos_x % width) as x,
+                if(pos_y < 0, pos_y + height,  pos_y % height) as y,
+                least(count(*), 9) as robot_count,
+            from movements
+            group by all
+        )
 
-    from (
-        select
-            grid.y,
-            string_agg(
-                coalesce(final_positions.robot_count::varchar, ' '),
-                '' order by grid.x
-            ) as graph
-        from grid
-            left join final_positions
-                using (x, y)
-        group by grid.y
-    )
-    select string_agg(graph, chr(10) order by y)
-) as graph
+        from (
+            select
+                grid.y,
+                string_agg(
+                    coalesce(final_positions.robot_count::varchar, ' '),
+                    '' order by grid.x
+                ) as graph
+            from grid
+                left join final_positions
+                    using (x, y)
+            group by grid.y
+        )
+        select string_agg(graph, chr(10) order by y)
+    ) as graph
 ;
 
 /*

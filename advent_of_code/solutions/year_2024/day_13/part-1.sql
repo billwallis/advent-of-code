@@ -1,4 +1,4 @@
-with recursive
+with
 
 input(data) as (
     select *
