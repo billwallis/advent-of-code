@@ -453,11 +453,11 @@ solutions:
         part-2: 79352015273424
     day-14:
       sample:
-        part-1: 0 #
-        part-2: 0 #
+        part-1: 12
+        part-2: 7753 # there is no sample solution for this part
       actual:
-        part-1:
-        part-2:
+        part-1: 226548000
+        part-2: 7753
     day-15:
       sample:
         part-1: 0 #
