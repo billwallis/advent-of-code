@@ -474,10 +474,10 @@ solutions:
         part-2:
     day-17:
       sample:
-        part-1: 0 #
+        part-1: "4,6,3,5,6,3,5,2,1,0"
         part-2: 0 #
       actual:
-        part-1:
+        part-1: "2,7,2,5,1,2,7,3,7"
         part-2:
     day-18:
       sample:
