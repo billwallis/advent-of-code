@@ -530,8 +530,8 @@ solutions:
         part-2:
     day-25:
       sample:
-        part-1: 0 #
+        part-1: 3
         part-2: 0 #
       actual:
-        part-1:
+        part-1: 2840
         part-2:
