@@ -74,7 +74,7 @@ with recursive
 
 input(data) as (
     select *
-    from read_csv('advent_of_code/solutions/year_2024/day_11/sample.data', header=false)
+    from read_csv('{{ file }}', header=false)
 ),
 
 stones as (

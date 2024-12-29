@@ -523,10 +523,10 @@ solutions:
         part-2: "bm,by,dv,ep,ia,ja,jb,ks,lv,ol,oy,uz,yt"
     day-24:
       sample:
-        part-1: 0 #
+        part-1: 2024 # sample-2
         part-2: 0 #
       actual:
-        part-1:
+        part-1: 57270694330992
         part-2:
     day-25:
       sample:
