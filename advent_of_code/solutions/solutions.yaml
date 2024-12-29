@@ -509,11 +509,11 @@ solutions:
         part-2:
     day-22:
       sample:
-        part-1: 0 #
-        part-2: 0 #
+        part-1: 37327623
+        part-2: 23
       actual:
-        part-1:
-        part-2:
+        part-1: 16299144133
+        part-2: 1896
     day-23:
       sample:
         part-1: 0 #
