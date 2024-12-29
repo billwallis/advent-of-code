@@ -22,7 +22,7 @@ create or replace table day_06.directions as
 
 
 create or replace table day_06.grid as
-    from read_csv('advent_of_code/solutions/year_2024/day_06/sample.data', header=false)
+    from read_csv('{{ file }}', header=false)
     select
         generate_subscripts(split(column0, ''), 1) AS x,
         row_number() over () as y,

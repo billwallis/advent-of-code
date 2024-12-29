@@ -107,3 +107,9 @@ end) as stones
 from blinks
 where blink >= (select max(blink) - 1 from blinks)
 ;
+
+
+
+
+
+select 0;

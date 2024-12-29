@@ -2,7 +2,7 @@ with recursive
 
 input(data, row_id) as (
     select *, row_number() over ()
-    from read_csv('advent_of_code/solutions/year_2024/day_17/input.data', header=false, sep='')
+    from read_csv('{{ file }}', header=false, sep='')
 ),
 
 /* Registers B and C start at 0, so can ignore parsing the register input */
