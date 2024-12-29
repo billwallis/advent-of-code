@@ -29,12 +29,8 @@ def solution(use_sample: bool) -> list[int]:
     file = HERE / ("sample.data" if use_sample else "input.data")
     read_input(file)
 
-    part_1 = _read("part-1.sql").replace(
-        "{% raw %}{{ file }}{% endraw %}", str(file.absolute())
-    )
-    part_2 = _read("part-2.sql").replace(
-        "{% raw %}{{ file }}{% endraw %}", str(file.absolute())
-    )
+    part_1 = _read("part-1.sql").replace("{% raw %}{{ file }}{% endraw %}", str(file.absolute()))
+    part_2 = _read("part-2.sql").replace("{% raw %}{{ file }}{% endraw %}", str(file.absolute()))
 
     return [
         duckdb.sql(part_1).fetchone()[0],

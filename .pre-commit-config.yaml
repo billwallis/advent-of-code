@@ -54,5 +54,7 @@ repos:
       - id: ruff
         name: Lint Python code
         args: ["--fix"]
+        exclude: "advent_of_code/meta/template/main.py"
       - id: ruff-format
         name: Format Python code
+        exclude: "advent_of_code/meta/template/main.py"
