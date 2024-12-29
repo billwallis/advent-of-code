@@ -4,7 +4,6 @@ Day 3: Mull It Over
 https://adventofcode.com/2024/day/3
 """
 
-import logging
 import pathlib
 
 import duckdb
@@ -21,11 +20,10 @@ def _read(file: str) -> str:
     return (HERE / file).read_text("utf-8")
 
 
-def solution(use_sample: bool) -> list[int]:
+def solution(use_sample: bool) -> list:
     """
     Solve the day 2 problem!
     """
-    logging.basicConfig(level="DEBUG")
     if use_sample:
         part_1_file = str((HERE / "sample-1.data").absolute())
         part_2_file = str((HERE / "sample-2.data").absolute())

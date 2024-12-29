@@ -4,7 +4,6 @@ Day 22: Monkey Market
 https://adventofcode.com/2024/day/22
 """
 
-import logging
 import pathlib
 
 import duckdb
@@ -21,7 +20,7 @@ def _read(file: str) -> str:
     return (HERE / file).read_text("utf-8")
 
 
-def solution(use_sample: bool) -> list[int]:
+def solution(use_sample: bool) -> list:
     """
     Solve the day 22 problem!
     """

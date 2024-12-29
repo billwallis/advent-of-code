@@ -4,7 +4,6 @@ Day 17: Chronospatial Computer
 https://adventofcode.com/2024/day/17
 """
 
-import logging
 import pathlib
 
 import duckdb
@@ -21,16 +20,21 @@ def _read(file: str) -> str:
     return (HERE / file).read_text("utf-8")
 
 
-def solution(use_sample: bool) -> list[int]:
+def solution(use_sample: bool) -> list:
     """
     Solve the day 17 problem!
     """
-    logging.basicConfig(level="DEBUG")
-    file = HERE / ("sample.data" if use_sample else "input.data")
-    read_input(file)
+    if use_sample:
+        part_1_file = str((HERE / "sample-1.data").absolute())
+        part_2_file = str((HERE / "sample-2.data").absolute())
+    else:
+        input_data = HERE / "input.data"
+        part_1_file = str(input_data.absolute())
+        part_2_file = part_1_file
+        read_input(input_data)
 
-    part_1 = _read("part-1.sql").replace("{{ file }}", str(file.absolute()))
-    part_2 = _read("part-2.sql").replace("{{ file }}", str(file.absolute()))
+    part_1 = _read("part-1.sql").replace("{{ file }}", part_1_file)
+    part_2 = _read("part-2.sql").replace("{{ file }}", part_2_file)
 
     return [
         duckdb.sql(part_1).fetchone()[0],

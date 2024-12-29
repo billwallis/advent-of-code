@@ -4,7 +4,6 @@ Day {{ day }}: {{ title }}
 https://adventofcode.com/{{ year }}/day/{{ day }}
 """
 
-import logging
 import pathlib
 
 import duckdb
@@ -21,11 +20,10 @@ def _read(file: str) -> str:
     return (HERE / file).read_text("utf-8")
 
 
-def solution(use_sample: bool) -> list[int]:
+def solution(use_sample: bool) -> list:
     """
     Solve the day {{ day }} problem!
     """
-    logging.basicConfig(level="DEBUG")
     file = HERE / ("sample.data" if use_sample else "input.data")
     read_input(file)
 
