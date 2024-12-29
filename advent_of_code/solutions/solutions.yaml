@@ -516,11 +516,11 @@ solutions:
         part-2: 1896
     day-23:
       sample:
-        part-1: 0 #
-        part-2: 0 #
+        part-1: 7
+        part-2: "co,de,ka,ta"
       actual:
-        part-1:
-        part-2:
+        part-1: 1215
+        part-2: "bm,by,dv,ep,ia,ja,jb,ks,lv,ol,oy,uz,yt"
     day-24:
       sample:
         part-1: 0 #
