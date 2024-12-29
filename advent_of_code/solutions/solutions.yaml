@@ -488,10 +488,10 @@ solutions:
         part-2:
     day-19:
       sample:
-        part-1: 0 #
+        part-1: 6
         part-2: 0 #
       actual:
-        part-1:
+        part-1: 258
         part-2:
     day-20:
       sample:
