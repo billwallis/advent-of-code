@@ -495,11 +495,11 @@ solutions:
         part-2:
     day-20:
       sample:
-        part-1: 0 #
-        part-2: 0 #
+        part-1: 0
+        part-2: 0
       actual:
-        part-1:
-        part-2:
+        part-1: 1367
+        part-2: 1006850
     day-21:
       sample:
         part-1: 0 #
