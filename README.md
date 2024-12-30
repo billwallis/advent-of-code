@@ -32,7 +32,7 @@ This project uses:
 
 ```shell
 # Setup
-poetry install --sync --with dev,test
+poetry install --sync
 pre-commit install --with-hooks
 
 # Use the CLI

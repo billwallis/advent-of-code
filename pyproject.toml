@@ -24,8 +24,8 @@ python-dotenv = "^1.0.1"
 requests = "^2"
 
 [tool.poetry.group]
-dev.optional = true
-test.optional = true
+dev.optional = false
+test.optional = false
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^3"
