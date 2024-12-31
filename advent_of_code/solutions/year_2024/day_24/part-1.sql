@@ -72,8 +72,6 @@ apply(n, wire_id, state) as (
             left join apply_rule
                 using (wire_id)
         where n_ in (select gate_id from gates)
-        -- where gate_id_ < 2
-        -- qualify 0 != count(*) filter (wire_id.starts_with('z') and state_ is null) over ()
     )
 ),
 

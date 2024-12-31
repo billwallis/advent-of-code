@@ -14,7 +14,6 @@ links(computer_1, computer_2) as (
         from input
 ),
 
-/**/
 trios as (
     select distinct
         list_sort([
