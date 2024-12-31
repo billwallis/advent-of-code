@@ -49,7 +49,6 @@ maze(x, y, ps, cell, seen) as (
 valid_solution as materialized (
     select x, y, ps
     from maze
-    order by ps
 ),
 
 cheats as (

@@ -49,7 +49,6 @@ maze(x, y, ps, cell, seen) as (
 valid_solution as materialized (
     select x, y, ps
     from maze
-    order by ps
 ),
 
 cheats as (
@@ -58,10 +57,14 @@ cheats as (
         valid_solution.y,
         valid_solution.ps,
         [cheat.x, cheat.y] as jump_to,
-        -2 + cheat.ps - valid_solution.ps as ps_saved,
+        cheat.ps - cheat.ps_spent - valid_solution.ps as ps_saved,
     from valid_solution
         cross join lateral (
-            select grid.x, grid.y, vs.ps
+            select
+                grid.x,
+                grid.y,
+                vs.ps,
+                abs(sol.x - grid.x) + abs(sol.y - grid.y) as ps_spent,
             from (select valid_solution.x, valid_solution.y) as sol
                 inner join grid
                     on  abs(sol.x - grid.x) + abs(sol.y - grid.y) <= 2
