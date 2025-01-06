@@ -3,6 +3,7 @@ with recursive
 input(data) as (
     select *
     from read_csv('advent_of_code/solutions/year_2024/day_12/sample-3.data', header=false)
+    -- from read_csv('advent_of_code/solutions/year_2024/day_12/input.data', header=false)
 ),
 
 grid as (
@@ -10,7 +11,7 @@ grid as (
     select
         generate_subscripts(split(data, ''), 1) as x,
         row_number() over () as y,
-        unnest(split(data, '')) as plant
+        unnest(split(data, '')) as plant,
 ),
 
 directions(direction) as (
@@ -19,12 +20,6 @@ directions(direction) as (
         ([ 1,  0]),
         ([ 0,  1]),
         ([-1,  0]),
-),
-
-right_down(direction) as (
-    values
-        ([ 1,  0]),
-        ([ 0,  1]),
 ),
 
 /* Loop to compute the perimeter */
@@ -47,103 +42,113 @@ perimeters(x, y, plant, perimeter) as (
     group by x, y
 ),
 
--- /* Recurse to join regions together */
--- regions(x, y, plant, plot_id) as (
---         select x, y, plant, uuid()
---         from grid
---         where (x, y) = (1, 1)
---     union all
---         select
---             grid.x,
---             grid.y,
---             grid.plant,
---             coalesce(
---                 (
---                     select any_value(plot_id)
---                     from regions
---                     where (grid.x, grid.y, grid.plant) in (
---                         (regions.x + 1, regions.y,     regions.plant),
---                         (regions.x,     regions.y + 1, regions.plant),
---                     )
---                 ),
---                 uuid()
---             ),
---         from grid
---         where exists(
---             select *
---             from regions
---             where (grid.x, grid.y) in (
---                 (regions.x + 1, regions.y),      /* match one right */
---                 (regions.x,     regions.y + 1),  /* match one down */
---             )
---         )
--- )
-
--- /* Recurse to join regions together */
--- regions(plot_id, x, y, plant, _seen, i) as (
---         from (
---             select
---                 *,
---                 plant != lag(plant, 1, '') over (partition by x order by y) as x_flag,
---                 plant != lag(plant, 1, '') over (partition by y order by x) as y_flag,
---             from grid
---         )
---         select uuid(), x, y, plant, [(x, y)], 1
---         where x_flag and y_flag
---     union all
---         select
---             regions.plot_id,
---             grid.x,
---             grid.y,
---             grid.plant,
---             list_append(regions._seen, (grid.x, grid.y)),
---             i + 1,
---         from regions
---             cross join right_down
---             inner join grid
---                 on  regions.x + direction[1] = grid.x
---                 and regions.y + direction[2] = grid.y
---                 and regions.plant = grid.plant
---         where not list_contains(regions._seen, (grid.x, grid.y))
--- )
-
-/* Recurse to join regions together */
-regions(plot_id, locations) as (
-        select null::uuid, null::int[][]
+region_edges__right_down as (
+        select
+            grid.plant,
+            'right' as edge_type,
+            [grid.x, grid.y] as point_1,
+            [r.x, r.y] as point_2,
+        from grid
+            inner join grid as r
+                on  grid.x + 1 = r.x
+                and grid.y = r.y
+                and grid.plant = r.plant
     union all
         select
-            regions.plot_id,
-            grid.x,
-            grid.y,
             grid.plant,
-            list_append(regions._seen, (grid.x, grid.y)),
-            i + 1,
+            'down' as edge_type,
+            [grid.x, grid.y] as point_1,
+            [d.x, d.y] as point_2,
+        from grid
+            inner join grid as d
+                on  grid.x = d.x
+                and grid.y + 1 = d.y
+                and grid.plant = d.plant
+),
+
+region_edges as (
+        select plant, edge_type, point_1, point_2
+        from region_edges__right_down
+    union all
+        select plant, if(edge_type = 'down', 'up', 'left'), point_2, point_1
+        from region_edges__right_down
+),
+
+regions(i, region_id, region, point, seen) as (
+        select 0, uuid(), plant, [x, y], [[x, y]]
+        from grid
+    union all (
+        with next_points as (
+            from (
+                select
+                    regions.i + 1 as i,
+                    regions.region_id,
+                    regions.region,
+                    region_edges.point_2 as point,
+                    regions.seen,
+                from regions
+                    inner join region_edges
+                        on  regions.point = region_edges.point_1
+                        and not regions.seen.list_contains(region_edges.point_2)
+            )
+            select
+                i,
+                region_id,
+                region,
+                point,
+                (seen
+                    .list_concat(list(point) over (partition by region_id))
+                    .list_distinct()
+                    .list_sort()
+                ) as seen,
+        )
+
+        /* If region IDs overlap (intersection in `seen`), combine them */
+        from next_points
+        -- select
+        --     i,
+        --     (
+        --         select min(region_id)
+        --         from next_points as innr
+        --         /* Only one depth of intersection */
+        --         where list_intersect(next_points.seen, innr.seen) != []
+        --     ),
+        --     region,
+        --     point,
+        --     seen,
+    )
+),
+
+region_areas as (
+    from (
+        select region_id, region, seen
         from regions
-            cross join right_down
-            inner join grid
-                on  regions.x + direction[1] = grid.x
-                and regions.y + direction[2] = grid.y
-                and regions.plant = grid.plant
-        where not list_contains(regions._seen, (grid.x, grid.y))
+        qualify i = max(i) over (partition by region_id)
+    )
+    select
+        seen,
+        any_value(region) as region,
+        any_value(region_id) as region_id,
+        len(seen) as area,
+    group by seen
+),
+
+region_perimeters as (
+    from (
+        from region_areas
+        select
+            region_id,
+            unnest(seen)[1] as x,
+            unnest(seen)[2] as y,
+    ) inner join perimeters using (x, y)
+    select
+        region_id,
+        sum(perimeter) as perimeter,
+    group by region_id
 )
 
-from regions
-select *, unnest(_seen)
-order by y, x, generate_subscripts(_seen, 1)
-
--- from (
---     select
---         regions.plot_id,
---         any_value(regions.plant) as plant,
---         count(*) as area,
---         sum(perimeters.perimeter) as perimeter
---     from regions
---         inner join perimeters
---             using (x, y)
---     group by regions.plot_id
--- )
--- -- select sum(area * perimeter)
---
--- select *
--- order by plant
+select sum(area * perimeter)
+from region_areas
+    inner join region_perimeters
+        using (region_id)
 ;
