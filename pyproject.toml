@@ -1,22 +1,22 @@
+[project]
+name = "advent_of_code"
+version = "0.0.0"
+description = "Solutions to the Advent of Code problem sets."
+authors = [{name = "Bilbottom"}]
+readme = "README.md"
+packages = [{include = "advent_of_code"}]
+requires-python = ">=3.11,<4.0"
+dynamic = ["dependencies"]
+
+[project.scripts]
+aoc = "advent_of_code.__main__:arguably.run"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 
-[tool.poetry]
-name = "advent_of_code"
-version = "0.0.0"
-description = "Solutions to the Advent of Code problem sets."
-authors = ["Bilbottom"]
-readme = "README.md"
-packages = [{include = "advent_of_code"}]
-
-[tool.poetry.scripts]
-aoc = "advent_of_code.__main__:arguably.run"
-
 [tool.poetry.dependencies]
-python = "^3.11"
-
 arguably = "^1"
 duckdb = "^1"
 jinja2 = "^3.1.4"
