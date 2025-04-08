@@ -1,39 +1,43 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "advent_of_code"
 version = "0.0.0"
 description = "Solutions to the Advent of Code problem sets."
 authors = [{name = "Bilbottom"}]
 readme = "README.md"
-packages = [{include = "advent_of_code"}]
-requires-python = ">=3.11,<4.0"
-dynamic = ["dependencies"]
+requires-python = ">=3.11"
+dependencies = [
+    "arguably>=1.0.0",
+    "duckdb>=1.0.0",
+    "jinja2>=3.1.4",
+    "python-dotenv>=1.0.1",
+    "requests>=2.0.0",
+]
 
 [project.scripts]
 aoc = "advent_of_code.__main__:arguably.run"
 
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+[dependency-groups]
+dev = [
+    "pre-commit>=4.1.0",
+    "pyyaml>=6.0.0",
+]
+test = [
+    "pytest>=8.3.5",
+    "pytest-cov>=6.0.0",
+]
 
 
-[tool.poetry.dependencies]
-arguably = "^1"
-duckdb = "^1"
-jinja2 = "^3.1.4"
-python-dotenv = "^1.0.1"
-requests = "^2"
+[tool.setuptools]
+packages = ["advent_of_code"]
 
-[tool.poetry.group]
-dev.optional = false
-test.optional = false
 
-[tool.poetry.group.dev.dependencies]
-pre-commit = "^3"
-pyyaml = "^6"
-
-[tool.poetry.group.test.dependencies]
-pytest = "^7.0"
-pytest-cov = "^4.0"
+[tool.pytest.ini_options]
+addopts = "--cov=advent_of_code"
+testpaths = ["tests"]
 
 
 [tool.ruff]
