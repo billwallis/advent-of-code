@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "advent_of_code"
 version = "0.0.0"
 description = "Solutions to the Advent of Code problem sets."
-authors = [{name = "Bilbottom"}]
+authors = [{name = "billwallis"}]
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
