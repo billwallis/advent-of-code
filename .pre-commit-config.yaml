@@ -34,7 +34,7 @@ repos:
         name: Validate Python
 
   - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.6.12
+    rev: 0.7.19
     hooks:
       - id: uv-lock
         name: Check that the lock file is up-to-date
@@ -47,7 +47,7 @@ repos:
         name: Make code pretty
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.11.4
+    rev: v0.12.2
     hooks:
       - id: ruff
         name: Lint Python code
