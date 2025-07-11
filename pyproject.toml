@@ -35,6 +35,11 @@ test = [
 packages = ["advent_of_code"]
 
 
+[tool.uv]
+required-version = ">=0.7,<1.0"
+default-groups = "all"
+
+
 [tool.pytest.ini_options]
 addopts = "--cov=advent_of_code"
 testpaths = ["tests"]
@@ -71,6 +76,7 @@ dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
     "RUF012",   #  Mutable class attributes should be annotated with `typing.ClassVar`
     "RUF015",   #  Prefer `next(...)` over single element slice
     "PLW0603",  #  Using the global statement to update `...` is discouraged
+    "PLW1641",  #  Object does not implement `__hash__` method
 ]
 "tests/**/*.py" = [
     "S101",     #  Use of `assert` detected
