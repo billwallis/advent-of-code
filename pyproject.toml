@@ -35,6 +35,11 @@ test = [
 packages = ["advent_of_code"]
 
 
+[tool.uv]
+required-version = ">=0.7,<1.0"
+default-groups = "all"
+
+
 [tool.pytest.ini_options]
 addopts = "--cov=advent_of_code"
 testpaths = ["tests"]
